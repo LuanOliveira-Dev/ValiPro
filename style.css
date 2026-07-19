@@ -926,3 +926,39 @@ tr:hover td {
         flex-flow: row wrap !important;
     }
 }
+
+/* ==========================================================================
+   ESTILIZAÇÃO DA ESTRELA DE MARCAÇÃO
+   ========================================================================== */
+.btn-star {
+    display: none; /* Escondido por padrão na tabela em telas grandes */
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+.btn-star:active {
+    transform: scale(0.85);
+}
+
+/* Ativa o posicionamento absoluto dentro do comportamento de card mobile */
+@media (max-width: 768px) {
+    table tr {
+        position: relative; /* Torna o card a referência de posicionamento */
+    }
+
+    .btn-star {
+        display: block;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        z-index: 10;
+        color: #cbd5e1; /* Cor cinza discreta para quando não estiver marcada */
+    }
+
+    .btn-star.active {
+        color: #eab308; /* Amarelo ouro original do seu card quando ativa */
+        text-shadow: 0 0 4px rgba(234, 179, 8, 0.3);
+    }
+}

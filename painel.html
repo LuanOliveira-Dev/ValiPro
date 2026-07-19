@@ -96,13 +96,13 @@
                 </div>
             </div>
 
-            <div class="dash-card card-yellow">
-                <div class="card-icon">⭐</div>
-                <div class="card-info">
-                    <h3>MARCADOS</h3>
-                    <span class="card-counter">0</span>
-                </div>
-            </div>
+            <div class="dash-card card-yellow" id="btn-card-marcados">
+    <div class="card-icon">⭐</div>
+    <div class="card-info">
+        <h3>MARCADOS</h3>
+        <span class="card-counter" id="count-marcados">0</span>
+    </div>
+</div>
 
             <div class="dash-card card-lightpurple">
                 <div class="card-icon">💵</div>
@@ -296,6 +296,27 @@
                 </div>
             </section>
         </div>
+
+<!-- Nova Aba de Produtos Marcados -->
+<div id="view-marcados" class="page-content hidden">
+    <section class="module-section">
+        <h2>⭐ Produtos Marcados / Favoritos</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cód. Barras</th>
+                        <th style="width: 35%;">Produto</th>
+                        <th>Setor</th>
+                        <th>Qtd</th>
+                        <th>Vencimento</th>
+                    </tr>
+                </thead>
+                <tbody id="marcados-table-body"></tbody>
+            </table>
+        </div>
+    </section>
+</div>
 
         <div id="view-setor" class="page-content hidden">
             <section class="module-section">

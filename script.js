@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewSetor = document.getElementById('view-setor');
     const viewColaborador = document.getElementById('view-colaborador');
     const viewConfiguracao = document.getElementById('view-configuracao');
+    const viewMarcados = document.getElementById('view-marcados');
 
     const btnCardAdicionar = document.getElementById('btn-card-adicionar');
     const btnCardDatabase = document.getElementById('btn-card-database');
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCardColaborador = document.getElementById('btn-card-colaborador');
     const btnCardConfig = document.getElementById('btn-card-config');
     const btnToggleTheme = document.getElementById('btn-toggle-theme');
+    const btnCardMarcados = document.getElementById('btn-card-marcados');
 
     const btnBack = document.getElementById('btn-back');
     const btnHome = document.getElementById('btn-home');
@@ -59,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const countColetados = document.getElementById('count-coletados');
     const countSetores = document.getElementById('count-setores');
     const countColaboradores = document.getElementById('count-colaboradores');
+    const countMarcados = document.getElementById('count-marcados');
 
+    const marcadosTableBody = document.getElementById('marcados-table-body');
     const tableBody = document.getElementById('product-table-body');
     const avencerTableBody = document.getElementById('avencer-table-body');
     const sectorTableBody = document.getElementById('sector-table-body');
@@ -162,6 +166,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dashboardSubtitle) dashboardSubtitle.textContent = "Painel Geral de Monitoramento";
     }
 
+    function showMarcadosTab() {
+    hideAllTabs();
+    if (viewMarcados) viewMarcados.classList.remove('hidden');
+    if (btnBack) btnBack.classList.remove('hidden');
+    if (dashboardMainTitle) dashboardMainTitle.textContent = "Produtos Marcados";
+    if (dashboardSubtitle) dashboardSubtitle.textContent = "Lista de itens sinalizados com destaque";
+    renderMarcadosTable();
+   }
+
     function hideAllTabs() {
         if (viewDashboard) viewDashboard.classList.add('hidden');
         if (viewAddProduct) viewAddProduct.classList.add('hidden');
@@ -171,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (viewSetor) viewSetor.classList.add('hidden');
         if (viewColaborador) viewColaborador.classList.add('hidden');
         if (viewConfiguracao) viewConfiguracao.classList.add('hidden');
+        if (viewMarcados) viewMarcados.classList.add('hidden');
     }
 
     if (btnCardAdicionar) btnCardAdicionar.addEventListener('click', showAddProductTab);
@@ -182,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCardConfig) btnCardConfig.addEventListener('click', showConfiguracaoTab);
     if (btnBack) btnBack.addEventListener('click', showDashboardTab);
     if (btnHome) btnHome.addEventListener('click', showDashboardTab);
+    if (btnCardMarcados) btnCardMarcados.addEventListener('click', showMarcadosTab);
 
     // --- CONTROLE DO MODAL E CADASTROS DIRETOS ---
     if (btnAddSectorModal && modalSector) {
@@ -332,24 +347,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     onSnapshot(produtosCollection, (snapshot) => {
-        localProducts = [];
-        snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            localProducts.push({
-                id: docSnap.id,
-                barcode: data.barcode || '',
-                name: data.name || '',
-                quantity: data.quantity || '1',
-                expiry: data.expiry || '',
-                sector: data.sector || ''
-            });
+    localProducts = [];
+    snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        localProducts.push({
+            id: docSnap.id,
+            barcode: data.barcode || '',
+            name: data.name || '',
+            quantity: data.quantity || '1',
+            expiry: data.expiry || '',
+            sector: data.sector || '',
+            marcado: data.marcado || false // Mapeia o campo do Firestore (padrão false se não existir)
         });
-        renderTable();
-        renderAVencerTable();
-        updateCounters();
-    }, (error) => {
-        console.error("Erro ao sincronizar produtos:", error);
     });
+    renderTable();
+    renderAVencerTable();
+    updateCounters();
+}, (error) => {
+    console.error("Erro ao sincronizar produtos:", error);
+});
 
     onSnapshot(catalogoCollection, (snapshot) => {
         localCatalogo = [];
@@ -481,30 +497,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CÁLCULO DE CONTADORES E DATAS ---
     function updateCounters() {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    let vencidos = 0;
+    let aVencer = 0;
+    let marcados = 0; // Novo contador isolado
+
+    localProducts.forEach(p => {
+        const expDate = new Date(p.expiry + 'T00:00:00');
         
-        let vencidos = 0;
-        let aVencer = 0;
+        // Verifica se o produto tem a propriedade marcado como true
+        if (p.marcado === true) {
+            marcados++;
+        }
+        
+        if (expDate < today) {
+            vencidos++;
+        } else {
+            const diffTime = expDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            if (diffDays <= 10) aVencer++;
+        }
+    });
 
-        localProducts.forEach(p => {
-            const expDate = new Date(p.expiry + 'T00:00:00');
-            
-            if (expDate < today) {
-                vencidos++;
-            } else {
-                const diffTime = expDate - today;
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                if (diffDays <= 10) aVencer++;
-            }
-        });
-
-        const total = localProducts.length;
-        if (countAVencer) countAVencer.textContent = aVencer;
-        if (countVencidos) countVencidos.textContent = vencidos;
-        if (countConferidos) countConferidos.textContent = total;
-        if (countColetados) countColetados.textContent = total;
-    }
+    const total = localProducts.length;
+    if (countAVencer) countAVencer.textContent = aVencer;
+    if (countVencidos) countVencidos.textContent = vencidos;
+    if (countConferidos) countConferidos.textContent = total;
+    if (countColetados) countColetados.textContent = total;
+    if (countMarcados) countMarcados.textContent = marcados; // Atualiza o card amarelo
+}
 
     // --- PROCESSAMENTO E EXIBIÇÃO DE TABELAS ---
     function renderTable() {
@@ -513,40 +536,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localProducts.forEach((product) => {
             const expDate = new Date(product.expiry + 'T00:00:00');
-            const barcodeText = product.barcode ? product.barcode : '---';
-            const qtyText = product.quantity ? product.quantity : '1';
-            const sectorText = product.sector ? product.sector : 'Geral';
+        const barcodeText = product.barcode ? product.barcode : '---';
+        const qtyText = product.quantity ? product.quantity : '1';
+        const sectorText = product.sector ? product.sector : 'Geral';
 
-            const [ano, mes, dia] = product.expiry.split('-');
-            const dataFormatada = (ano && mes && dia) ? `${dia}/${mes}/${ano}` : expDate.toLocaleDateString('pt-BR');
+        const [ano, mes, dia] = product.expiry.split('-');
+        const dataFormatada = (ano && mes && dia) ? `${dia}/${mes}/${ano}` : expDate.toLocaleDateString('pt-BR');
 
-            // SISTEMA INTELIGENTE DE CORES ADAPTATIVAS (EVITA TEXTO APAGADO NO ESCURO)
-            const isDark = document.body.classList.contains('dark-theme');
-            const badgeBg = isDark ? '#334155' : '#e2e8f0';
-            const badgeColor = isDark ? '#ffffff' : '#1e293b';
-            const qtyColor = isDark ? '#ffffff' : '#1e293b';
+        const isDark = document.body.classList.contains('dark-theme');
+        const badgeBg = isDark ? '#334155' : '#e2e8f0';
+        const badgeColor = isDark ? '#ffffff' : '#1e293b';
+        const qtyColor = isDark ? '#ffffff' : '#1e293b';
 
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td data-label="Cód. Barras"><span style="font-family: monospace; color: #64748b;">${barcodeText}</span></td>
-                <td data-label="Produto"><strong>${product.name}</strong></td>
-                <td data-label="Setor"><span class="badge-sector" style="background: ${badgeBg}; color: ${badgeColor}; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">${sectorText}</span></td>
-                <td data-label="Qtd"><span style="font-weight: 600; color: ${qtyColor};">${qtyText}</span></td>
-                <td data-label="Vencimento">${dataFormatada}</td>
-                <td data-label="Ação" style="text-align: center;"><button class="btn-del" data-id="${product.id}">Remover</button></td>
-            `;
-            tableBody.appendChild(tr);
+        // Define a aparência da estrela: preenchida (⭐) se marcado for true, vazia (☆) se for false
+        const estrelaIcone = product.marcado ? '⭐' : '☆';
+        const estrelaClasse = product.marcado ? 'btn-star active' : 'btn-star';
+
+        const tr = document.createElement('tr');
+        // Adicionada a tag span com a classe btn-star na estrutura da linha
+        tr.innerHTML = `
+            <span class="${estrelaClasse}" data-id="${product.id}" title="Marcar Produto">${estrelaIcone}</span>
+            <td data-label="Cód. Barras"><span style="font-family: monospace; color: #64748b;">${barcodeText}</span></td>
+            <td data-label="Produto"><strong>${product.name}</strong></td>
+            <td data-label="Setor"><span class="badge-sector" style="background: ${badgeBg}; color: ${badgeColor}; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">${sectorText}</span></td>
+            <td data-label="Qtd"><span style="font-weight: 600; color: ${qtyColor};">${qtyText}</span></td>
+            <td data-label="Vencimento">${dataFormatada}</td>
+            <td data-label="Ação" style="text-align: center;"><button class="btn-del" data-id="${product.id}">Remover</button></td>
+        `;
+        tableBody.appendChild(tr);
+    });
+
+    // OUVINTE DE CLIQUE PARA A ESTRELINHA (Alterna o estado no Firestore)
+    document.querySelectorAll('.btn-star').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const id = e.target.getAttribute('data-id');
+            // Encontra o estado atual localmente para inverter
+            const produtoLocal = localProducts.find(p => p.id === id);
+            const novoEstado = produtoLocal ? !produtoLocal.marcado : true;
+
+            try {
+                // Importação do Firebase 'doc' e 'getFirestore' já existem no seu topo
+                const { updateDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+                await updateDoc(doc(db, "produtos", id), {
+                    marcado: novoEstado
+                });
+            } catch (err) {
+                console.error("Erro ao atualizar marcação: ", err.message);
+            }
         });
+    });
 
-        document.querySelectorAll('.btn-del:not(.btn-del-sector):not(.btn-del-colaborador)').forEach(btn => {
-            btn.addEventListener('click', async (e) => {
-                const id = e.target.getAttribute('data-id');
-                if (confirm("Deseja remover este produto definitivamente?")) {
-                    try { await deleteDoc(doc(db, "produtos", id)); } catch (err) { alert("Erro ao deletar documento: " + err.message); }
-                }
-            });
+    // Mantém o ouvinte do botão Remover intacto
+    document.querySelectorAll('.btn-del:not(.btn-del-sector):not(.btn-del-colaborador)').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            const id = e.target.getAttribute('data-id');
+            if (confirm("Deseja remover este produto definitivamente?")) {
+                try { await deleteDoc(doc(db, "produtos", id)); } catch (err) { alert("Erro ao deletar documento: " + err.message); }
+            }
         });
-    }
+    });
+}
 
     function renderAVencerTable() {
         if (!avencerTableBody) return;
