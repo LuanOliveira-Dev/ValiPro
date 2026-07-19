@@ -1,46 +1,51 @@
-const CACHE_NAME = 'web-validade-v91'; // Atualizado para v91 para limpar o cache antigo e aplicar as correções
+const CACHE_NAME = 'valipro-v1';
 const urlsToCache = [
-  './',
-  './index.html',
-  './style.css',
-  './script.js',
-  './firebase-config.js',
-  './manifest.json'
+    './',
+    './index.html',
+    './painel.html',
+    './style.css',
+    './login-style.css',
+    './script.js',
+    './login-script.js',
+    './firebase-config.js',
+    './manifest.json'
 ];
 
-// Instalação: Salva os arquivos essenciais no cache
+// Install: cacheia tolerante a falhas (uma URL 404 não invalida tudo)
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Cache aberto e arquivos mapeados');
-                return cache.addAll(urlsToCache);
-            })
+        caches.open(CACHE_NAME).then((cache) =>
+            Promise.allSettled(urlsToCache.map((url) => cache.add(url)))
+        )
     );
     self.skipWaiting();
 });
 
-// Ativação: Limpa caches antigos
+// Activate: remove caches antigos
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cache) => {
-                    if (cache !== CACHE_NAME) {
-                        console.log('Removendo cache antigo:', cache);
-                        return caches.delete(cache);
-                    }
-                })
-            );
-        })
+        caches.keys().then((names) =>
+            Promise.all(names.map((n) => (n !== CACHE_NAME ? caches.delete(n) : null)))
+        ).then(() => self.clients.claim())
     );
 });
 
-// Busca (Fetch): Tenta a rede primeiro, se falhar (offline), usa o cache
+// Fetch: network-first para navegação/HTML, cache-first para assets estáticos
 self.addEventListener('fetch', (event) => {
+    const req = event.request;
+    if (req.method !== 'GET') return;
+
+    // Não intercepta chamadas do Firestore/Auth (precisam de rede)
+    const url = new URL(req.url);
+    if (url.hostname.includes('googleapis.com') || url.hostname.includes('gstatic.com')) return;
+
     event.respondWith(
-        fetch(event.request).catch(() => {
-            return caches.match(event.request);
-        })
+        fetch(req)
+            .then((res) => {
+                const copy = res.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(req, copy)).catch(() => {});
+                return res;
+            })
+            .catch(() => caches.match(req).then((cached) => cached || caches.match('./index.html')))
     );
 });
