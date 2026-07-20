@@ -1,3 +1,8 @@
+// Importe a instância do Auth do seu arquivo de configuração
+import { auth } from './firebase-config.js';
+// Importe a função oficial de login do Firebase v10
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('email');
@@ -43,8 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnLoader) btnLoader.classList.remove('hidden');
 
         try {
-            // Simulador de carregamento estético para a requisição
-            await new Promise(resolve => setTimeout(resolve, 1200));
+            // EFETUA O LOGIN REAL NO FIREBASE AUTH
+            await signInWithEmailAndPassword(auth, email, password);
+            
             showAlert('Acesso autorizado! Entrando...', 'success');
             
             setTimeout(() => {
@@ -54,7 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.replace(window.location.origin + basePath + "painel.html");
             }, 800);
         } catch (error) {
+            // Captura erros reais de autenticação (Senha errada ou usuário não existe)
+            console.error("Erro ao autenticar: ", error.code);
+            
+            if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                showAlert('E-mail ou senha incorretos.');
+            } else if (error.code === 'auth/invalid-email') {
+                showAlert('Formato de e-mail inválido.');
+            } else {
+                showAlert('Erro ao tentar entrar. Tente novamente.');
+            }
+            
+            // Restaura o botão caso falhe
             btnSubmit.disabled = false;
+            if (btnText) btnText.classList.remove('hidden');
+            if (btnLoader) btnLoader.classList.add('hidden');
         }
     });
 });
