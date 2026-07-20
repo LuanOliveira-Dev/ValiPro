@@ -1,20 +1,8 @@
-// Importações oficiais do Firebase v10
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+// 1. IMPORTA A CONEXÃO DIRETO DO SEU ARQUIVO CENTRALIZADO
+import { auth, db } from "./firebase-config.js";
 
-// Suas credenciais originais
-const firebaseConfig = {
-    apiKey: "AIzaSyBH4hDVSqv7enMugPWUaM9CksO4F1yKvuQ",
-    authDomain: "controle-de-validade-3e66a.firebaseapp.com",
-    projectId: "controle-de-validade-3e66a",
-    storageBucket: "controle-de-validade-3e66a.firebasestorage.app",
-    messagingSenderId: "163605465156",
-    appId: "1:163605465156:web:8f7728cbf73e6bf6265411"
-};
-
-// Inicializa o Firebase e o Firestore
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// 2. IMPORTA APENAS AS FUNÇÕES DE TABELA/DADOS QUE O PAINEL PRECISA DO FIRESTORE
+import { collection, addDoc, onSnapshot, deleteDoc, doc, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 const produtosCollection = collection(db, "produtos");
 const catalogoCollection = collection(db, "catalogo");
 const setoresCollection = collection(db, "setores");
