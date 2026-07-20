@@ -1,0 +1,66 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-primary);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+tr:hover td {
+    background-color: var(--table-header-bg);
+}
+
+.btn-del {
+    background-color: transparent;
+    color: #ef4444;
+    border: 1px solid #fca5a5;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-del:hover {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border-color: #ef4444;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge.vencido { background-color: #fee2e2; color: #b91c1c; }
+.badge.ok { background-color: #dcfce7; color: #15803d; }
+
+.btn-del-sector {
+    padding: 6px 14px !important;
+    width: auto !important;
+    display: inline-block;
+}

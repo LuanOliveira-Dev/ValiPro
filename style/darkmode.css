@@ -1,0 +1,23 @@
+.dark-theme {
+    /* Cores adaptadas (Tema Escuro) */
+    --bg-primary: #0f172a;
+    --bg-card: #1e293b;
+    --bg-input: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #475569;
+    --table-header-bg: #1e293b;
+    --table-border: #334155;
+}
+
+.dark-theme .brand-name-text {
+    color: #ffffff;
+}
+
+.dark-theme .brand-subtitle-text {
+    color: #94a3b8;
+}
+
+.dark-theme .brand h1 {
+    color: #f8fafc;
+}

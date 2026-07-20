@@ -1,0 +1,219 @@
+.product-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    background-color: var(--bg-input);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+    background-color: var(--bg-card);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.size-mini { flex: 1 1 80px; }
+.size-medium { flex: 2 1 180px; }
+.size-large { flex: 4 1 280px; }
+
+.barcode-input-container {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.barcode-input-container input {
+    flex: 1;
+    width: 100%;
+}
+
+.btn-scan-trigger {
+    background-color: #475569;
+    color: white;
+    border: none;
+    padding: 0 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn-scan-trigger:hover {
+    background-color: #334155;
+}
+
+.btn-submit-prod {
+    height: 42px;
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    padding: 0 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex: 1 1 auto;
+}
+
+.btn-submit-prod:hover {
+    background-color: #15803d;
+}
+
+.db-box {
+    border-left: 4px solid #475569;
+}
+
+.db-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.db-title {
+    margin-bottom: 0 !important;
+}
+
+.badge-cloud {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.db-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.csv-upload-area {
+    background-color: var(--bg-input);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.csv-upload-area:hover {
+    background-color: var(--table-header-bg);
+    border-color: var(--text-secondary);
+}
+
+.file-input-wrapper input[type="file"] {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.btn-small {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    height: 42px;
+}
+
+.btn-small:hover {
+    background-color: #1d4ed8;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-field input {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    background-color: var(--bg-input);
+}
+
+.form-field input:focus {
+    border-color: #2563eb;
+    background-color: var(--bg-card);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+#direct-sector-form {
+    background: var(--bg-input);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.form-row-group {
+    display: flex;
+    flex: 1 1 100%;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.btn-scan-trigger-new {
+    height: 42px;
+    background-color: #475569;
+    color: white;
+    border: none;
+    padding: 0 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-scan-trigger-new:hover {
+    background-color: #334155;
+}

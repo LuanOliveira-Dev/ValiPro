@@ -1,0 +1,76 @@
+.dash-card {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+}
+
+.dash-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-info h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#btn-card-config .card-info h3 {
+    color: #ffffff !important;
+}
+
+.card-counter {
+    font-size: 32px;
+    font-weight: 700;
+    display: block;
+    margin-top: 4px;
+    color: white;
+}
+
+.card-counter-dark {
+    font-size: 32px;
+    font-weight: 700;
+    display: block;
+    margin-top: 4px;
+    color: var(--text-primary);
+}
+
+.card-title-lg {
+    font-size: 18px;
+    font-weight: 600;
+    display: block;
+    margin-top: 4px;
+    color: white;
+}
+
+/* Paleta de Cores Dinâmica */
+.card-green { background: #15803d; }
+.card-blue { background: #1d4ed8; }
+.card-lightgreen { background: #16a34a; }
+.card-red { background: #b91c1c; }
+.card-purple { background: #6b21a8; }
+.card-yellow { background: #eab308; }
+.card-lightpurple { background: #a855f7; }
+.card-darkblue { background: #1e3a8a; }
+.card-darkpurple { background: #4c1d95; }
+.card-pink { background: #db2777; }
+.card-teal { background: #0d9488; }
+.card-darkest { background: #0f172a; }
+.card-cyan { background: #0891b2; }
+.card-brown { background: #78350f; }
+.card-slate { background: #475569; }
+.card-orange { background: #FF6B00; }
