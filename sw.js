@@ -1,8 +1,20 @@
-const CACHE_NAME = 'web-validade-v90'; // Atualizado para v90 para limpar o cache antigo e aplicar as correções
+const CACHE_NAME = 'valipro-v91'; // Nome corrigido para ValiPro e versão atualizada para forçar a renovação
 const urlsToCache = [
   './',
   './index.html',
-  './style.css',
+  './painel.html', 
+  './style/app.css',
+  './style/cards.css',
+  './style/forms.css',
+  './style/login.css',
+  './style/dashboard.css',
+  './style/responsive.css',
+  './style/darkmode.css',
+  './style/navbar.css',
+  './style/tables.css',
+  './style/modals.css',
+  './style/animations.css',
+  './login-script.js', 
   './script.js',
   './firebase-config.js',
   './manifest.json'
