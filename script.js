@@ -1,8 +1,13 @@
-// 1. IMPORTA A CONEXÃO DIRETO DO SEU ARQUIVO CENTRALIZADO
+// 1. Importa a conexão com Firebase e a autenticação do seu arquivo central
 import { auth, db } from "./firebase-config.js";
 
-// 2. IMPORTA APENAS AS FUNÇÕES DE TABELA/DADOS QUE O PAINEL PRECISA DO FIRESTORE
+// 2. Importa as funções do Firestore (banco de dados)
 import { collection, addDoc, onSnapshot, deleteDoc, doc, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// 3. NOVO: Importa as funções do Firebase Auth para gerenciar sessão e logout
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// 1. IMPORTA A CONEXÃO DIRETO DO SEU ARQUIVO CENTRALIZADO
 const produtosCollection = collection(db, "produtos");
 const catalogoCollection = collection(db, "catalogo");
 const setoresCollection = collection(db, "setores");
@@ -620,11 +625,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnLogout) {
-        btnLogout.addEventListener('click', () => {
+    // --- VERIFICAÇÃO DE SESSÃO DO USUÁRIO (PROTEÇÃO DE ROTA) ---
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            // Se o usuário não estiver autenticado, joga de volta para o login
             const currentPath = window.location.pathname;
             const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
             window.location.replace(window.location.origin + basePath + "index.html");
+        }
+    });
+
+    // --- LOGOUT SEGURO ---
+    if (btnLogout) {
+        btnLogout.addEventListener('click', async () => {
+            try {
+                // Encerra a sessão no Firebase Auth
+                await signOut(auth);
+                const currentPath = window.location.pathname;
+                const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+                window.location.replace(window.location.origin + basePath + "index.html");
+            } catch (error) {
+                console.error("Erro ao encerrar a sessão:", error);
+                alert("Erro ao encerrar a sessão. Tente novamente.");
+            }
         });
     }
 
