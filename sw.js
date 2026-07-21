@@ -1,23 +1,22 @@
-const CACHE_NAME = 'valipro-v92'; // Nome corrigido para ValiPro e versão atualizada para forçar a renovação
-const urlsToCache = [
+const CACHE_NAME = 'valipro-v91'; // Mantenha a versão v91
+
+const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './painel.html', 
-  './style/app.css',
-  './style/cards.css',
-  './style/forms.css',
-  './style/login.css',
-  './style/dashboard.css',
-  './style/responsive.css',
-  './style/darkmode.css',
-  './style/navbar.css',
-  './style/tables.css',
-  './style/modals.css',
-  './style/animations.css',
-  './login-script.js', 
-  './script.js',
-  './firebase-config.js',
-  './manifest.json'
+  './painel.html',
+  './style/style.css',
+  './script/app.js',
+  './script/firebase.js',
+  './script/auth.js',
+  './script/produtos.js',
+  './script/setores.js',
+  './script/colaboradores.js',
+  './script/cards.js',
+  './script/filtros.js',
+  './script/theme.js',
+  './script/notificacoes.js',
+  './script/scanner.js',
+  './script/utils.js'
 ];
 
 // Instalação: Salva os arquivos essenciais no cache
