@@ -1,5 +1,5 @@
 // Importa o serviço de autenticação do seu arquivo central
-import { auth } from "./firebase-config.js";
+import { auth } from "./firebase.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 document.addEventListener('DOMContentLoaded', () => {
