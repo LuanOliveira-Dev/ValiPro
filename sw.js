@@ -1,4 +1,4 @@
-const CACHE_NAME = 'valipro-v91'; // Nome corrigido para ValiPro e versão atualizada para forçar a renovação
+const CACHE_NAME = 'valipro-v92'; // Nome corrigido para ValiPro e versão atualizada para forçar a renovação
 const urlsToCache = [
   './',
   './index.html',
