@@ -2,12 +2,14 @@
 import { auth } from "./firebase.js";
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-// Monitora a sessão especificamente para páginas PROTEGIDAS (como o painel.html)
+// Monitora a sessão no painel.html
 export function monitorarSessao() {
     onAuthStateChanged(auth, (user) => {
         if (!user) {
-            // Se NÃO estiver logado e tentar acessar o painel, vai para a tela de login
-            redirecionarPara("index.html");
+            // Se realmente NÃO houver usuário logado, manda para o login
+            window.location.replace("index.html");
+        } else {
+            console.log("Usuário autenticado com sucesso:", user.email);
         }
     });
 }
@@ -16,10 +18,9 @@ export function monitorarSessao() {
 export async function realizarLogout() {
     try {
         await signOut(auth);
-        redirecionarPara("index.html");
+        window.location.replace("index.html");
     } catch (error) {
         console.error("Erro ao fazer logout:", error);
-        alert("Erro ao encerrar a sessão.");
     }
 }
 
