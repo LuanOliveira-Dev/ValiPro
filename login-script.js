@@ -1,6 +1,5 @@
-// Importe a instância do Auth do seu arquivo de configuração
-import { auth } from './firebase-config.js';
-// Importe a função oficial de login do Firebase v10
+// Importa o serviço de autenticação do seu arquivo central
+import { auth } from "./firebase-config.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const alertBox = document.getElementById('alert-box');
     const alertMessage = document.getElementById('alert-message');
 
+    // Alternar visibilidade da senha (Mostrar/Ocultar)
     if (togglePasswordBtn && eyeIcon) {
         togglePasswordBtn.addEventListener('click', () => {
             const isPassword = passwordInput.getAttribute('type') === 'password';
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Exibir mensagens de alerta/erro
     function showAlert(message, type = 'error') {
         if (alertBox && alertMessage) {
             alertBox.className = `alert ${type}`;
@@ -34,47 +35,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        if (!email || !password) { showAlert('Preencha os campos.'); return; }
-
-        const btnText = btnSubmit.querySelector('.btn-text');
-        const btnLoader = btnSubmit.querySelector('.btn-loader');
-        btnSubmit.disabled = true;
-        if (btnText) btnText.classList.add('hidden');
-        if (btnLoader) btnLoader.classList.remove('hidden');
-
-        try {
-            // EFETUA O LOGIN REAL NO FIREBASE AUTH
-            await signInWithEmailAndPassword(auth, email, password);
-            
-            showAlert('Acesso autorizado! Entrando...', 'success');
-            
-            setTimeout(() => {
-                const currentPath = window.location.pathname;
-                const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-                // Direciona para o painel de produtos de forma segura
-                window.location.replace(window.location.origin + basePath + "painel.html");
-            }, 800);
-        } catch (error) {
-            // Captura erros reais de autenticação (Senha errada ou usuário não existe)
-            console.error("Erro ao autenticar: ", error.code);
-            
-            if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                showAlert('E-mail ou senha incorretos.');
-            } else if (error.code === 'auth/invalid-email') {
-                showAlert('Formato de e-mail inválido.');
-            } else {
-                showAlert('Erro ao tentar entrar. Tente novamente.');
-            }
-            
-            // Restaura o botão caso falhe
-            btnSubmit.disabled = false;
-            if (btnText) btnText.classList.remove('hidden');
-            if (btnLoader) btnLoader.classList.add('hidden');
+    // Formatar mensagens de erro do Firebase para algo amigável em Português
+    function getFriendlyErrorMessage(errorCode) {
+        switch (errorCode) {
+            case 'auth/invalid-email':
+                return 'E-mail inválido ou mal formatado.';
+            case 'auth/user-not-found':
+            case 'auth/wrong-password':
+            case 'auth/invalid-credential':
+                return 'E-mail ou senha incorretos.';
+            case 'auth/too-many-requests':
+                return 'Muitas tentativas sem sucesso. Tente novamente mais tarde.';
+            default:
+                return 'Falha ao realizar login. Verifique suas credenciais.';
         }
-    });
+    }
+
+    // Lógica de Submit do Formulário de Login
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!email || !password) {
+                showAlert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            const btnText = btnSubmit.querySelector('.btn-text');
+            const btnLoader = btnSubmit.querySelector('.btn-loader');
+            
+            btnSubmit.disabled = true;
+            if (btnText) btnText.classList.add('hidden');
+            if (btnLoader) btnLoader.classList.remove('hidden');
+
+            try {
+                // Autenticação real no Firebase
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                showAlert('Acesso autorizado! Redirecionando...', 'success');
+                
+                setTimeout(() => {
+                    const currentPath = window.location.pathname;
+                    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+                    window.location.replace(window.location.origin + basePath + "painel.html");
+                }, 800);
+
+            } catch (error) {
+                console.error("Erro no login:", error);
+                showAlert(getFriendlyErrorMessage(error.code), 'error');
+                
+                btnSubmit.disabled = false;
+                if (btnText) btnText.classList.remove('hidden');
+                if (btnLoader) btnLoader.classList.add('hidden');
+            }
+        });
+    }
 });
