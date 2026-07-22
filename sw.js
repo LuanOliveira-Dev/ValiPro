@@ -1,4 +1,4 @@
-const CACHE_NAME = 'valipro-v91'; // Mantenha a versão v91
+const CACHE_NAME = 'valipro-v93'; // Mantenha a versão v91
 
 const ASSETS_TO_CACHE = [
   './',
