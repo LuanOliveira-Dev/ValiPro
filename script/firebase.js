@@ -4,7 +4,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBH4hDVSqv7enMugPWUaM9Cks04F1yKvuQ",
+  apiKey: "AIzaSyCNmL8-dw1Iq8D6_ZnxbYzx7D0kiEky6dQ",
   authDomain: "controle-de-validade-3e66a.firebaseapp.com",
   projectId: "controle-de-validade-3e66a",
   storageBucket: "controle-de-validade-3e66a.firebasestorage.app",
@@ -16,6 +16,6 @@ const firebaseConfig = {
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 
-// Exporta as instâncias necessárias para auth.js, app.js, etc.
+// Exporta as instâncias para uso no app
 export const auth = getAuth(app);
 export const db = getFirestore(app);
