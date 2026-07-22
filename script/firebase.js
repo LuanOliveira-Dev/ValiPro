@@ -4,7 +4,8 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBH4hDVSqv7enMugPWUaM9Cks04F1yKvuQ",
+  // Verifique se a chave abaixo não tem nenhum caractere faltando
+  apiKey: "AIzaSyBH4hDVSqv7enMugPWUaM9Cks04F1yKvuQ", 
   authDomain: "controle-de-validade-3e66a.firebaseapp.com",
   projectId: "controle-de-validade-3e66a",
   storageBucket: "controle-de-validade-3e66a.firebasestorage.app",
