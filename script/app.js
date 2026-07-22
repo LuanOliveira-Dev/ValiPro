@@ -10,8 +10,46 @@ import { inicializarTema } from "./theme.js";
 import { exibirAlerta } from "./notificacoes.js";
 import { inicializarScanner } from "./scanner.js";
 
+// -------------------------------------------------------------
+// EXPOSIÇÃO GLOBAL (Para suprir o escopo do type="module" no HTML)
+// -------------------------------------------------------------
+window.realizarLogout = realizarLogout;
+
+window.abrirModalAdicionar = function() {
+    const modal = document.getElementById('modal-produto') || document.getElementById('product-modal');
+    if (modal) {
+        modal.classList.add('active');
+        modal.style.display = 'flex';
+    } else {
+        console.warn('Modal de produto não encontrada no HTML.');
+    }
+};
+
+window.fecharModalAdicionar = function() {
+    const modal = document.getElementById('modal-produto') || document.getElementById('product-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+    }
+};
+
+window.excluirProdutoGlobal = async function(id) {
+    if (confirm('Deseja realmente excluir este produto?')) {
+        try {
+            await excluirProduto(id);
+            exibirAlerta('Produto excluído com sucesso!', 'success');
+        } catch (err) {
+            console.error("Erro ao excluir:", err);
+            exibirAlerta('Erro ao excluir produto.', 'error');
+        }
+    }
+};
+
+// -------------------------------------------------------------
+// INICIALIZAÇÃO E EVENTOS DO DOM
+// -------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inicia Guarda de Rota / Segurança
+    // 1. Segurança / Guarda de Rota
     monitorarSessao();
 
     // Cache de Elementos da DOM
@@ -19,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnThemeToggle = document.getElementById('theme-toggle');
     const cardsContainer = document.getElementById('cards-container');
     const productForm = document.getElementById('product-form');
+    const btnAdicionar = document.getElementById('btn-adicionar') || document.querySelector('.btn-add');
     
     // Filtros
     const inputBusca = document.getElementById('search-input');
@@ -37,24 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let todosColaboradores = [];
 
     // 2. Inicializa o Tema (Claro/Escuro)
-    inicializarTema(btnThemeToggle);
+    if (btnThemeToggle) {
+        inicializarTema(btnThemeToggle);
+    }
 
-    // 3. Listener do Logout
+    // 3. Listeners dos Botões de Topo
     if (btnLogout) {
         btnLogout.addEventListener('click', realizarLogout);
     }
 
+    if (btnAdicionar) {
+        btnAdicionar.addEventListener('click', window.abrirModalAdicionar);
+    }
+
     // 4. Escuta Setores e atualiza os Selects
     escutarSetores((setores) => {
-        todosSetores = setores;
-        preencherSelectSetores(selectFiltroSetor, setores, "Todos os Setores");
-        preencherSelectSetores(selectSetorForm, setores, "Selecione o Setor");
+        todosSetores = setores || [];
+        if (selectFiltroSetor) preencherSelectSetores(selectFiltroSetor, todosSetores, "Todos os Setores");
+        if (selectSetorForm) preencherSelectSetores(selectSetorForm, todosSetores, "Selecione o Setor");
     });
 
     // 5. Escuta Colaboradores e atualiza o Select do Formulário
     escutarColaboradores((colaboradores) => {
-        todosColaboradores = colaboradores;
-        preencherSelectColaboradores(selectRespForm, colaboradores, "Selecione o Responsável");
+        todosColaboradores = colaboradores || [];
+        if (selectRespForm) preencherSelectColaboradores(selectRespForm, todosColaboradores, "Selecione o Responsável");
     });
 
     // 6. Função para re-aplicar filtros e renderizar a tela
@@ -66,23 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const produtosFiltrados = filtrarEOrdenarProdutos(todosProdutos, texto, setor, status, ordem);
         
-        renderizarCards(produtosFiltrados, cardsContainer, {
-            onExcluir: async (id) => {
-                if (confirm('Deseja realmente excluir este produto?')) {
-                    try {
-                        await excluirProduto(id);
-                        exibirAlerta('Produto excluído com sucesso!', 'success');
-                    } catch (err) {
-                        exibirAlerta('Erro ao excluir produto.', 'error');
-                    }
-                }
-            }
-        });
+        if (cardsContainer) {
+            renderizarCards(produtosFiltrados, cardsContainer, {
+                onExcluir: window.excluirProdutoGlobal
+            });
+        }
     }
 
     // 7. Escuta Produtos em tempo real do Firestore
     escutarProdutos((produtos) => {
-        todosProdutos = produtos;
+        todosProdutos = produtos || [];
         atualizarInterface();
     });
 
@@ -118,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 await salvarProduto(novoProduto);
                 productForm.reset();
+                window.fecharModalAdicionar();
                 exibirAlerta('Produto cadastrado com sucesso!', 'success');
             } catch (err) {
                 console.error("Erro ao salvar produto:", err);
@@ -127,7 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 10. Inicializa leitor de código de barras
-    inicializarScanner(inputBarcode, (codigo) => {
-        exibirAlerta(`Código lido: ${codigo}`, 'info');
-    });
+    if (inputBarcode) {
+        inicializarScanner(inputBarcode, (codigo) => {
+            exibirAlerta(`Código lido: ${codigo}`, 'info');
+        });
+    }
 });
