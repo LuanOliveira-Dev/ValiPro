@@ -161,3 +161,12 @@ body.dark-theme .btn-del-v2 { background-color: #450a0a; color: #fca5a5; }
         justify-content: center;
     }
 }
+
+/* Garante alinhamento total dos cards no celular e PC */
+#product-table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    margin-top: 15px;
+}
