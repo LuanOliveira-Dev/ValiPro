@@ -1,8 +1,8 @@
 :root {
     --blue-primary: #1d5bd8;
     --blue-hover: #1546ab;
-    --bg-dark-blue: #01123c;
-    --bg-page: #f2f5fa;
+    --bg-dark-blue: #001e62;
+    --bg-page: #f0f4fa;
     --green-accent: #00e676;
     --text-dark: #0f172a;
     --text-gray: #64748b;
@@ -30,11 +30,11 @@ body {
 }
 
 /* ==========================================
-   PAINEL ESQUERDO (AZUL COM CORTE DIAGONAL)
+   PAINEL ESQUERDO
 ========================================== */
 .brand-panel {
-    flex: 0.92;
-    background: radial-gradient(circle at 10% 20%, #032b80 0%, #011238 100%);
+    flex: 0.9;
+    background: radial-gradient(circle at 20% 20%, #002b82 0%, #001238 100%);
     color: #ffffff;
     padding: 60px 70px;
     display: flex;
@@ -42,9 +42,10 @@ body {
     justify-content: space-between;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
-/* Faixa diagonal verde e azul no meio */
+/* Faixa diagonal verde/azul */
 .brand-panel::after {
     content: '';
     position: absolute;
@@ -54,7 +55,7 @@ body {
     height: 100%;
     background: var(--green-accent);
     transform: skewX(-7deg);
-    z-index: 2;
+    z-index: 4;
 }
 
 .brand-panel::before {
@@ -64,17 +65,58 @@ body {
     right: -45px;
     width: 100%;
     height: 100%;
-    background: #011238;
+    background: #001238;
     transform: skewX(-7deg);
+    z-index: 3;
+}
+
+/* Quadrados decorativos de fundo no painel azul */
+.bg-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.shape-1 { width: 90px; height: 90px; top: 25%; right: 18%; }
+.shape-2 { width: 130px; height: 130px; top: 38%; right: 8%; }
+.shape-3 { width: 70px; height: 70px; top: 32%; right: 35%; }
+
+.circle-check-bg {
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 320px;
+    height: 320px;
+    border: 35px solid rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.04);
+}
+
+.circle-check-bg svg {
+    width: 140px;
+    height: 140px;
 }
 
 .brand-header, .brand-hero, .brand-features {
     position: relative;
-    z-index: 3;
+    z-index: 5;
 }
 
-/* Logo ValiPro */
+/* Header & Logo */
 .brand-header {
     display: flex;
     align-items: center;
@@ -164,11 +206,11 @@ body {
     line-height: 1.35;
 }
 
-/* Frase Principal */
+/* Hero Section */
 .brand-hero h1 {
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 800;
-    line-height: 1.12;
+    line-height: 1.15;
     margin-bottom: 16px;
     color: #ffffff;
 }
@@ -176,11 +218,11 @@ body {
 .brand-hero p {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.75);
-    max-width: 390px;
+    max-width: 380px;
     line-height: 1.5;
 }
 
-/* Colunas Inferiores */
+/* Icons Footer */
 .brand-features {
     display: flex;
     gap: 36px;
@@ -223,23 +265,23 @@ body {
    PAINEL DIREITO (FORMULÁRIO DE LOGIN)
 ========================================== */
 .form-panel {
-    flex: 1.08;
+    flex: 1.1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
     background-color: var(--bg-page);
     position: relative;
-    z-index: 3;
+    z-index: 5;
 }
 
 .card-login {
     width: 100%;
-    max-width: 450px;
+    max-width: 440px;
     background: #ffffff;
     border-radius: 20px;
     padding: 42px 38px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .card-header {
@@ -274,7 +316,7 @@ body {
     font-size: 13px;
 }
 
-/* Campos de Entrada */
+/* Inputs */
 .field-group { margin-bottom: 20px; }
 
 .field-group label {
@@ -331,7 +373,6 @@ body {
 
 .btn-eye svg { width: 18px !important; height: 18px !important; }
 
-/* Opções e Lembrar */
 .row-options {
     display: flex;
     justify-content: space-between;
@@ -360,7 +401,7 @@ body {
     font-weight: 600;
 }
 
-/* Botão de Entrar (Tamanho e Seta Certo) */
+/* Botão Entrar */
 .btn-login {
     width: 100%;
     height: 48px !important;
@@ -391,7 +432,6 @@ body {
     height: 18px !important;
 }
 
-/* Rodapé do Cartão */
 .card-footer {
     display: flex;
     align-items: center;
@@ -425,39 +465,13 @@ body {
 
 .link-request span { font-size: 15px; font-weight: 700; }
 
-/* ==========================================
-   RESPONSIVIDADE (MOBILE / CELULAR)
-========================================== */
+/* RESPONSIVO (MOBILE) */
 @media (max-width: 992px) {
-    .login-wrapper {
-        flex-direction: column;
-    }
-
-    .brand-panel {
-        flex: none;
-        padding: 32px 20px 48px 20px;
-    }
-
-    .brand-panel::after, .brand-panel::before {
-        display: none;
-    }
-
-    .brand-header {
-        justify-content: center;
-    }
-
-    .brand-hero, .brand-features {
-        display: none;
-    }
-
-    .form-panel {
-        padding: 0 16px 32px 16px;
-        margin-top: -24px;
-        background: transparent;
-    }
-
-    .card-login {
-        padding: 32px 20px;
-        border-radius: 18px;
-    }
+    .login-wrapper { flex-direction: column; }
+    .brand-panel { flex: none; padding: 32px 20px 48px 20px; }
+    .brand-panel::after, .brand-panel::before, .bg-shapes { display: none; }
+    .brand-header { justify-content: center; }
+    .brand-hero, .brand-features { display: none; }
+    .form-panel { padding: 0 16px 32px 16px; margin-top: -24px; background: transparent; }
+    .card-login { padding: 32px 20px; border-radius: 18px; }
 }
