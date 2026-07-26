@@ -1,15 +1,14 @@
 :root {
     --primary-blue: #1d5bd8;
     --primary-hover: #1546ab;
-    --bg-dark-blue: #021a4f;
+    --bg-dark-blue: #011238;
     --bg-light-body: #f4f7fc;
     --card-bg: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
     --border-color: #e2e8f0;
     --input-focus: #1d5bd8;
-    --highlight-green: #00d084;
-    --highlight-red: #00e676;
+    --highlight-green: #00e676;
     --radius-card: 20px;
 }
 
@@ -35,7 +34,7 @@ body {
 }
 
 /* =========================================================
-   COLUNA ESQUERDA - MARCA E SLOGAN (PC)
+   PAINEL ESQUERDO (DESKTOP)
 ========================================================= */
 .brand-section {
     flex: 0.95;
@@ -49,7 +48,7 @@ body {
     z-index: 1;
 }
 
-/* Borda diagonal separadora igual ao mockup */
+/* Borda diagonal verde */
 .brand-section::after {
     content: '';
     position: absolute;
@@ -57,7 +56,7 @@ body {
     right: -50px;
     width: 60px;
     height: 100%;
-    background: #00d084;
+    background: #00e676;
     transform: skewX(-7deg);
     z-index: 2;
 }
@@ -79,7 +78,7 @@ body {
     z-index: 3;
 }
 
-/* Marca ValiPro Recriada */
+/* Marca ValiPro com Ícone */
 .brand-header {
     display: flex;
     align-items: center;
@@ -93,12 +92,12 @@ body {
 }
 
 .calendar-icon {
-    width: 50px;
-    height: 46px;
+    width: 46px;
+    height: 42px;
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 8px;
     position: relative;
-    padding: 6px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -107,12 +106,12 @@ body {
 .calendar-dots {
     display: flex;
     justify-content: space-between;
-    padding: 0 4px;
+    padding: 0 3px;
 }
 
 .calendar-dots span {
-    width: 4px;
-    height: 6px;
+    width: 3px;
+    height: 5px;
     background: #1d5bd8;
     border-radius: 2px;
 }
@@ -120,23 +119,22 @@ body {
 .calendar-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-    padding: 2px;
+    gap: 2px;
 }
 
 .grid-dot {
-    height: 6px;
+    height: 5px;
     background: #cbd5e1;
-    border-radius: 2px;
+    border-radius: 1px;
 }
 
 .check-badge {
     position: absolute;
-    bottom: -6px;
-    right: -6px;
-    width: 26px;
-    height: 26px;
-    background: #00c853;
+    bottom: -5px;
+    right: -5px;
+    width: 22px;
+    height: 22px;
+    background: #00e676;
     border: 2px solid #ffffff;
     border-radius: 50%;
     display: flex;
@@ -145,22 +143,20 @@ body {
     color: #ffffff;
 }
 
-.check-badge svg { width: 14px; height: 14px; }
+.check-badge svg { width: 12px; height: 12px; }
 
 .brand-name {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
     color: #ffffff;
     letter-spacing: -0.5px;
 }
 
-.brand-name .green-text {
-    color: #00e676;
-}
+.brand-name .green-text { color: #00e676; }
 
 .brand-divider {
     width: 1px;
-    height: 38px;
+    height: 36px;
     background-color: rgba(255, 255, 255, 0.25);
 }
 
@@ -171,7 +167,7 @@ body {
     line-height: 1.3;
 }
 
-/* Slogan */
+/* Headline e Frase */
 .brand-headline {
     font-size: 42px;
     font-weight: 800;
@@ -181,7 +177,6 @@ body {
 }
 
 .brand-headline .highlight-green { color: #00e676; }
-.brand-headline .highlight-red { color: #00e676; }
 
 .brand-description {
     font-size: 15px;
@@ -190,31 +185,34 @@ body {
     line-height: 1.5;
 }
 
-/* Destaques (Ícones no Rodapé) */
+/* Ícones de Rodapé do Painel */
 .feature-icons {
     display: flex;
-    gap: 28px;
+    gap: 32px;
 }
 
 .feature-item {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 120px;
+    gap: 8px;
+    max-width: 110px;
 }
 
 .feature-box {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
 }
 
-.feature-box svg { width: 20px; height: 20px; }
+.feature-box svg {
+    width: 20px !important;
+    height: 20px !important;
+}
 
 .feature-text strong {
     display: block;
@@ -231,7 +229,7 @@ body {
 }
 
 /* =========================================================
-   COLUNA DIREITA - FORMULÁRIO DE LOGIN
+   PAINEL DIREITO (CARTÃO DE LOGIN)
 ========================================================= */
 .form-section {
     flex: 1.05;
@@ -246,29 +244,29 @@ body {
 
 .login-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 460px;
 }
 
 .login-card {
     background-color: var(--card-bg);
     border-radius: var(--radius-card);
-    padding: 48px 44px;
+    padding: 44px 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-/* Topo do Cartão de Login */
+/* Topo do Formulário com Avatar */
 .login-header {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
 .user-avatar-icon {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     background-color: #eef2ff;
-    color: #3b82f6;
+    color: #2563eb;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -276,7 +274,7 @@ body {
     flex-shrink: 0;
 }
 
-.user-avatar-icon svg { width: 26px; height: 26px; }
+.user-avatar-icon svg { width: 24px; height: 24px; }
 
 .header-text h1 {
     color: #0f172a;
@@ -302,8 +300,8 @@ body {
 .alert.success { background-color: #ecfdf5; color: #10b981; }
 .hidden { display: none !important; }
 
-/* Inputs do Formulário */
-.input-group { margin-bottom: 22px; }
+/* Inputs */
+.input-group { margin-bottom: 20px; }
 
 .input-group label {
     display: block;
@@ -332,9 +330,10 @@ body {
 
 .input-wrapper input {
     width: 100%;
-    padding: 14px 44px 14px 46px;
+    height: 48px;
+    padding: 0 44px 0 46px;
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 14px;
     color: var(--text-main);
     background-color: #ffffff;
@@ -344,7 +343,7 @@ body {
 
 .input-wrapper input:focus {
     border-color: var(--input-focus);
-    box-shadow: 0 0 0 4px rgba(29, 91, 216, 0.1);
+    box-shadow: 0 0 0 3px rgba(29, 91, 216, 0.1);
 }
 
 .toggle-password {
@@ -358,14 +357,14 @@ body {
     align-items: center;
 }
 
-.toggle-password svg { width: 20px; height: 20px; }
+.toggle-password svg { width: 18px; height: 18px; }
 
-/* Opções (Lembrar / Esqueci a senha) */
+/* Lembrar meus dados e Esqueci a senha */
 .form-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
     font-size: 13px;
 }
 
@@ -381,7 +380,6 @@ body {
     accent-color: var(--primary-blue);
     width: 16px;
     height: 16px;
-    border-radius: 4px;
 }
 
 .forgot-password {
@@ -390,23 +388,24 @@ body {
     font-weight: 600;
 }
 
-/* Botão de Entrar */
+/* BOTÃO PRINCIPAL (CORRIGIDO) */
 .btn-primary {
     width: 100%;
-    padding: 14px 24px;
+    height: 48px !important;
+    padding: 0 20px;
     background-color: var(--primary-blue);
     color: #ffffff;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 50px;
+    box-sizing: border-box;
 }
 
 .btn-primary:hover {
@@ -416,14 +415,14 @@ body {
 .btn-arrow {
     position: absolute;
     right: 20px;
-    width: 20px;
-    height: 20px;
+    width: 18px !important;
+    height: 18px !important;
 }
 
 .btn-loader {
     width: 20px;
     height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: #ffffff;
     animation: spin 0.8s linear infinite;
@@ -431,24 +430,24 @@ body {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Rodapé do Cartão */
+/* Rodapé do Cartão com Escudo Verde */
 .login-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 32px;
-    padding-top: 24px;
+    margin-top: 28px;
+    padding-top: 22px;
     border-top: 1px solid #f1f5f9;
     font-size: 13px;
     color: #64748b;
 }
 
 .shield-icon {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     background-color: #e6f7ef;
-    color: #00c853;
+    color: #00e676;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -467,13 +466,9 @@ body {
 .chevron { font-size: 15px; font-weight: 700; }
 
 /* =========================================================
-   RESPONSIVIDADE (MOBILE - MODELO TELA CELULAR)
+   RESPONSIVIDADE (MOBILE)
 ========================================================= */
 @media (max-width: 992px) {
-    body {
-        background-color: var(--bg-light-body);
-    }
-
     .login-page {
         flex-direction: column;
     }
@@ -481,10 +476,9 @@ body {
     .brand-section {
         flex: none;
         background: radial-gradient(circle at 50% 30%, #032b80 0%, #011238 100%);
-        padding: 40px 24px 60px 24px;
+        padding: 36px 20px 50px 20px;
     }
 
-    /* Remove o corte diagonal no mobile */
     .brand-section::after, .brand-section::before {
         display: none;
     }
@@ -499,13 +493,12 @@ body {
 
     .form-section {
         padding: 0 16px 32px 16px;
-        margin-top: -30px;
+        margin-top: -24px;
         background: transparent;
     }
 
     .login-card {
-        padding: 36px 24px;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        padding: 32px 20px;
+        border-radius: 18px;
     }
 }
