@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ValiPro - Painel</title>
     
+    <!-- PWA Manifest & Favicon -->
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
-    <!-- CSS do Projeto (Mantendo a estrutura original do seu estilo) -->
+    <!-- CSS do Sistema -->
     <link rel="stylesheet" href="style/app.css">
+    <link rel="stylesheet" href="style/navbar.css">
+    <link rel="stylesheet" href="style/dashboard.css">
     <link rel="stylesheet" href="style/cards.css">
+    <link rel="stylesheet" href="style/forms.css">
+    <link rel="stylesheet" href="style/tables.css">
+    <link rel="stylesheet" href="style/modals.css">
+    <link rel="stylesheet" href="style/darkmode.css">
     <link rel="stylesheet" href="style/responsive.css">
 
     <!-- Biblioteca para Leitura de Código de Barras -->
@@ -24,8 +32,11 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
             <div class="brand-logo">
-                <span class="logo-title">ValiPro</span>
-                <span class="logo-sub">Gestão Inteligente de Validades</span>
+                <img src="assets/logo.png" alt="ValiPro Logo" onerror="this.style.display='none'">
+                <div>
+                    <span class="logo-title">ValiPro</span>
+                    <span class="logo-sub">Gestão Inteligente de Validades</span>
+                </div>
             </div>
         </div>
 
@@ -155,6 +166,7 @@
                         </div>
                     </div>
 
+                    <!-- Leitor da Câmera -->
                     <div id="scanner-wrapper" class="scanner-container hidden">
                         <div id="reader"></div>
                         <button type="button" id="btn-stop-scan" class="btn-danger">Fechar Câmera</button>
@@ -188,7 +200,7 @@
             </div>
         </div>
 
-        <!-- 3. VIEW: PRODUTOS COLETADOS -->
+        <!-- 3. VIEW: PRODUTOS COLETADOS (CONTAINER DOS NOVOS CARDS V2) -->
         <div id="view-coletados" class="tab-view hidden">
             <div id="product-table-body" class="products-cards-container"></div>
         </div>
@@ -260,7 +272,7 @@
             </div>
         </div>
 
-        <!-- 7. VIEW: BANCO DE DADOS -->
+        <!-- 7. VIEW: BANCO DE DADOS (NUVEM) -->
         <div id="view-database" class="tab-view hidden">
             <div class="form-container">
                 <h3 id="panel-cloud-counter">0 PRODUTOS NA NUVEM</h3>
@@ -284,7 +296,20 @@
 
     </div>
 
-    <!-- SCRIPT PRINCIPAL -->
+    <!-- MODAL DE NOTIFICAÇÕES -->
+    <div id="modal-notif" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notificações</h3>
+                <button id="btn-close-notif" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body" id="notif-list-container">
+                <p class="text-empty">Nenhuma notificação recente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT PRINCIPAL (MÓDULO ES6) -->
     <script type="module" src="script/app.js"></script>
 </body>
 </html>
