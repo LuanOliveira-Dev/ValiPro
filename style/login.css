@@ -1,15 +1,12 @@
 :root {
-    --primary-blue: #1d5bd8;
-    --primary-hover: #1546ab;
-    --bg-dark-blue: #011238;
-    --bg-light-body: #f4f7fc;
-    --card-bg: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --input-focus: #1d5bd8;
-    --highlight-green: #00e676;
-    --radius-card: 20px;
+    --blue-primary: #1d5bd8;
+    --blue-hover: #1546ab;
+    --bg-dark-blue: #01123c;
+    --bg-page: #f2f5fa;
+    --green-accent: #00e676;
+    --text-dark: #0f172a;
+    --text-gray: #64748b;
+    --border-light: #e2e8f0;
 }
 
 * {
@@ -17,27 +14,26 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    background-color: var(--bg-light-body);
+    background-color: var(--bg-page);
     min-height: 100vh;
     display: flex;
 }
 
-.login-page {
+.login-wrapper {
     display: flex;
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
 }
 
-/* =========================================================
-   PAINEL ESQUERDO
-========================================================= */
-.brand-section {
-    flex: 0.95;
+/* ==========================================
+   PAINEL ESQUERDO (AZUL COM CORTE DIAGONAL)
+========================================== */
+.brand-panel {
+    flex: 0.92;
     background: radial-gradient(circle at 10% 20%, #032b80 0%, #011238 100%);
     color: #ffffff;
     padding: 60px 70px;
@@ -48,24 +44,24 @@ body {
     z-index: 1;
 }
 
-/* Borda diagonal verde */
-.brand-section::after {
+/* Faixa diagonal verde e azul no meio */
+.brand-panel::after {
     content: '';
     position: absolute;
     top: 0;
-    right: -50px;
+    right: -55px;
     width: 60px;
     height: 100%;
-    background: #00e676;
+    background: var(--green-accent);
     transform: skewX(-7deg);
     z-index: 2;
 }
 
-.brand-section::before {
+.brand-panel::before {
     content: '';
     position: absolute;
     top: 0;
-    right: -40px;
+    right: -45px;
     width: 100%;
     height: 100%;
     background: #011238;
@@ -73,116 +69,190 @@ body {
     z-index: 1;
 }
 
-.brand-header, .brand-content, .feature-icons {
+.brand-header, .brand-hero, .brand-features {
     position: relative;
     z-index: 3;
 }
 
-/* Logo da Imagem */
-.brand-logo-img {
-    height: 52px;
-    width: auto;
-    object-fit: contain;
+/* Logo ValiPro */
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-/* Headline */
-.brand-headline {
-    font-size: 42px;
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.calendar-badge {
+    width: 48px;
+    height: 44px;
+    background: #ffffff;
+    border-radius: 10px;
+    position: relative;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.cal-rings {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+}
+
+.cal-rings span {
+    width: 3px;
+    height: 6px;
+    background: var(--blue-primary);
+    border-radius: 2px;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.cal-grid span {
+    height: 5px;
+    background: #cbd5e1;
+    border-radius: 1px;
+}
+
+.cal-check {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 24px;
+    height: 24px;
+    background: var(--green-accent);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.cal-check svg { width: 13px; height: 13px; }
+
+.brand-title {
+    font-size: 32px;
     font-weight: 800;
-    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.green-txt { color: var(--green-accent); }
+
+.header-divider {
+    width: 1px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.brand-subtext {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.35;
+}
+
+/* Frase Principal */
+.brand-hero h1 {
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.12;
     margin-bottom: 16px;
     color: #ffffff;
 }
 
-.brand-headline .highlight-green { color: #00e676; }
-
-.brand-description {
+.brand-hero p {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.75);
-    max-width: 380px;
+    max-width: 390px;
     line-height: 1.5;
 }
 
 /* Colunas Inferiores */
-.feature-icons {
+.brand-features {
     display: flex;
-    gap: 32px;
+    gap: 36px;
 }
 
-.feature-item {
+.feat-col {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     max-width: 110px;
 }
 
-.feature-box {
-    width: 40px;
-    height: 40px;
+.feat-icon {
+    width: 42px;
+    height: 42px;
     background: rgba(255, 255, 255, 0.08);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
+    margin-bottom: 4px;
 }
 
-.feature-box svg {
-    width: 20px !important;
-    height: 20px !important;
-}
+.feat-icon svg { width: 20px !important; height: 20px !important; }
 
-.feature-text strong {
-    display: block;
+.feat-col strong {
     font-size: 13px;
     color: #ffffff;
-    margin-bottom: 2px;
+    display: block;
 }
 
-.feature-text span {
+.feat-col span {
     font-size: 11px;
     color: rgba(255, 255, 255, 0.65);
     line-height: 1.3;
-    display: block;
 }
 
-/* =========================================================
-   PAINEL DIREITO (FORMULÁRIO)
-========================================================= */
-.form-section {
-    flex: 1.05;
+/* ==========================================
+   PAINEL DIREITO (FORMULÁRIO DE LOGIN)
+========================================== */
+.form-panel {
+    flex: 1.08;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
-    background-color: #f4f7fc;
+    background-color: var(--bg-page);
     position: relative;
     z-index: 3;
 }
 
-.login-container {
+.card-login {
     width: 100%;
-    max-width: 460px;
+    max-width: 450px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 42px 38px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
-.login-card {
-    background-color: var(--card-bg);
-    border-radius: var(--radius-card);
-    padding: 44px 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-}
-
-.login-header {
+.card-header {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
-.user-avatar-icon {
+.avatar-box {
     width: 52px;
     height: 52px;
-    background-color: #eef2ff;
+    background: #eef2ff;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -190,38 +260,38 @@ body {
     flex-shrink: 0;
 }
 
-.user-avatar-icon svg { width: 24px !important; height: 24px !important; }
+.avatar-box svg { width: 24px !important; height: 24px !important; }
 
-.header-text h1 {
-    color: #0f172a;
+.avatar-title h2 {
+    color: var(--text-dark);
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
-.header-text p {
-    color: #64748b;
+.avatar-title p {
+    color: var(--text-gray);
     font-size: 13px;
 }
 
-/* Inputs */
-.input-group { margin-bottom: 20px; }
+/* Campos de Entrada */
+.field-group { margin-bottom: 20px; }
 
-.input-group label {
+.field-group label {
     display: block;
-    color: #1e293b;
+    color: var(--text-dark);
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
-.input-wrapper {
+.field-wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.input-icon {
+.field-icon {
     position: absolute;
     left: 16px;
     display: flex;
@@ -229,27 +299,27 @@ body {
     pointer-events: none;
 }
 
-.input-icon svg { width: 18px !important; height: 18px !important; }
+.field-icon svg { width: 18px !important; height: 18px !important; }
 
-.input-wrapper input {
+.field-wrapper input {
     width: 100%;
     height: 48px;
     padding: 0 44px 0 46px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-light);
     border-radius: 10px;
     font-size: 14px;
-    color: var(--text-main);
-    background-color: #ffffff;
+    color: var(--text-dark);
+    background: #ffffff;
     outline: none;
     transition: all 0.2s ease;
 }
 
-.input-wrapper input:focus {
-    border-color: var(--input-focus);
+.field-wrapper input:focus {
+    border-color: var(--blue-primary);
     box-shadow: 0 0 0 3px rgba(29, 91, 216, 0.1);
 }
 
-.toggle-password {
+.btn-eye {
     position: absolute;
     right: 16px;
     background: none;
@@ -259,58 +329,59 @@ body {
     align-items: center;
 }
 
-.toggle-password svg { width: 18px !important; height: 18px !important; }
+.btn-eye svg { width: 18px !important; height: 18px !important; }
 
-.form-actions {
+/* Opções e Lembrar */
+.row-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     font-size: 13px;
 }
 
-.remember-me {
+.check-container {
     display: flex;
     align-items: center;
-    color: #64748b;
+    color: var(--text-gray);
     cursor: pointer;
 }
 
-.remember-me input {
+.check-container input {
     margin-right: 8px;
-    accent-color: var(--primary-blue);
+    accent-color: var(--blue-primary);
     width: 16px;
     height: 16px;
 }
 
-.forgot-password {
-    color: var(--primary-blue);
+.link-forgot {
+    color: var(--blue-primary);
     text-decoration: none;
     font-weight: 600;
 }
 
-/* BOTÃO PRINCIPAL (ALTURA E SETA RETIFICADAS) */
-.btn-primary {
+/* Botão de Entrar (Tamanho e Seta Certo) */
+.btn-login {
     width: 100%;
     height: 48px !important;
     padding: 0 20px;
-    background-color: var(--primary-blue);
+    background-color: var(--blue-primary);
     color: #ffffff;
     border: none;
     border-radius: 10px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     box-sizing: border-box;
+    transition: background-color 0.2s;
 }
 
-.btn-primary:hover {
-    background-color: var(--primary-hover);
+.btn-login:hover {
+    background-color: var(--blue-hover);
 }
 
 .btn-arrow {
@@ -321,19 +392,19 @@ body {
 }
 
 /* Rodapé do Cartão */
-.login-footer {
+.card-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 28px;
+    margin-top: 26px;
     padding-top: 22px;
     border-top: 1px solid #f1f5f9;
     font-size: 13px;
-    color: #64748b;
+    color: var(--text-gray);
 }
 
-.shield-icon {
+.shield-box {
     width: 36px;
     height: 36px;
     background-color: #e6f7ef;
@@ -344,30 +415,49 @@ body {
     flex-shrink: 0;
 }
 
-.shield-icon svg { width: 18px !important; height: 18px !important; }
+.shield-box svg { width: 18px !important; height: 18px !important; }
 
-.request-link {
-    color: var(--primary-blue);
+.link-request {
+    color: var(--blue-primary);
     text-decoration: none;
     font-weight: 600;
 }
 
-.chevron { font-size: 15px; font-weight: 700; }
+.link-request span { font-size: 15px; font-weight: 700; }
 
-/* Responsividade */
+/* ==========================================
+   RESPONSIVIDADE (MOBILE / CELULAR)
+========================================== */
 @media (max-width: 992px) {
-    .login-page { flex-direction: column; }
-    .brand-section {
-        flex: none;
-        padding: 36px 20px 50px 20px;
+    .login-wrapper {
+        flex-direction: column;
     }
-    .brand-section::after, .brand-section::before { display: none; }
-    .brand-header { justify-content: center; }
-    .brand-content, .feature-icons { display: none; }
-    .form-section {
+
+    .brand-panel {
+        flex: none;
+        padding: 32px 20px 48px 20px;
+    }
+
+    .brand-panel::after, .brand-panel::before {
+        display: none;
+    }
+
+    .brand-header {
+        justify-content: center;
+    }
+
+    .brand-hero, .brand-features {
+        display: none;
+    }
+
+    .form-panel {
         padding: 0 16px 32px 16px;
         margin-top: -24px;
         background: transparent;
     }
-    .login-card { padding: 32px 20px; border-radius: 18px; }
+
+    .card-login {
+        padding: 32px 20px;
+        border-radius: 18px;
+    }
 }
