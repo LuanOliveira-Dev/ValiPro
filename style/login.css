@@ -34,7 +34,7 @@ body {
 }
 
 /* =========================================================
-   PAINEL ESQUERDO (DESKTOP)
+   PAINEL ESQUERDO
 ========================================================= */
 .brand-section {
     flex: 0.95;
@@ -78,96 +78,14 @@ body {
     z-index: 3;
 }
 
-/* Marca ValiPro com Ícone */
-.brand-header {
-    display: flex;
-    align-items: center;
-    gap: 18px;
+/* Logo da Imagem */
+.brand-logo-img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
 }
 
-.valipro-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.calendar-icon {
-    width: 46px;
-    height: 42px;
-    background: #ffffff;
-    border-radius: 8px;
-    position: relative;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.calendar-dots {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 3px;
-}
-
-.calendar-dots span {
-    width: 3px;
-    height: 5px;
-    background: #1d5bd8;
-    border-radius: 2px;
-}
-
-.calendar-body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-}
-
-.grid-dot {
-    height: 5px;
-    background: #cbd5e1;
-    border-radius: 1px;
-}
-
-.check-badge {
-    position: absolute;
-    bottom: -5px;
-    right: -5px;
-    width: 22px;
-    height: 22px;
-    background: #00e676;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-}
-
-.check-badge svg { width: 12px; height: 12px; }
-
-.brand-name {
-    font-size: 30px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-}
-
-.brand-name .green-text { color: #00e676; }
-
-.brand-divider {
-    width: 1px;
-    height: 36px;
-    background-color: rgba(255, 255, 255, 0.25);
-}
-
-.brand-subtitle {
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.3;
-}
-
-/* Headline e Frase */
+/* Headline */
 .brand-headline {
     font-size: 42px;
     font-weight: 800;
@@ -185,7 +103,7 @@ body {
     line-height: 1.5;
 }
 
-/* Ícones de Rodapé do Painel */
+/* Colunas Inferiores */
 .feature-icons {
     display: flex;
     gap: 32px;
@@ -229,7 +147,7 @@ body {
 }
 
 /* =========================================================
-   PAINEL DIREITO (CARTÃO DE LOGIN)
+   PAINEL DIREITO (FORMULÁRIO)
 ========================================================= */
 .form-section {
     flex: 1.05;
@@ -254,7 +172,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-/* Topo do Formulário com Avatar */
 .login-header {
     display: flex;
     align-items: center;
@@ -266,7 +183,6 @@ body {
     width: 52px;
     height: 52px;
     background-color: #eef2ff;
-    color: #2563eb;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -274,7 +190,7 @@ body {
     flex-shrink: 0;
 }
 
-.user-avatar-icon svg { width: 24px; height: 24px; }
+.user-avatar-icon svg { width: 24px !important; height: 24px !important; }
 
 .header-text h1 {
     color: #0f172a;
@@ -287,18 +203,6 @@ body {
     color: #64748b;
     font-size: 13px;
 }
-
-/* Alertas */
-.alert {
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-.alert.error { background-color: #fef2f2; color: #ef4444; }
-.alert.success { background-color: #ecfdf5; color: #10b981; }
-.hidden { display: none !important; }
 
 /* Inputs */
 .input-group { margin-bottom: 20px; }
@@ -320,13 +224,12 @@ body {
 .input-icon {
     position: absolute;
     left: 16px;
-    color: #2563eb;
     display: flex;
     align-items: center;
     pointer-events: none;
 }
 
-.input-icon svg { width: 18px; height: 18px; }
+.input-icon svg { width: 18px !important; height: 18px !important; }
 
 .input-wrapper input {
     width: 100%;
@@ -351,15 +254,13 @@ body {
     right: 16px;
     background: none;
     border: none;
-    color: #94a3b8;
     cursor: pointer;
     display: flex;
     align-items: center;
 }
 
-.toggle-password svg { width: 18px; height: 18px; }
+.toggle-password svg { width: 18px !important; height: 18px !important; }
 
-/* Lembrar meus dados e Esqueci a senha */
 .form-actions {
     display: flex;
     justify-content: space-between;
@@ -388,7 +289,7 @@ body {
     font-weight: 600;
 }
 
-/* BOTÃO PRINCIPAL (CORRIGIDO) */
+/* BOTÃO PRINCIPAL (ALTURA E SETA RETIFICADAS) */
 .btn-primary {
     width: 100%;
     height: 48px !important;
@@ -419,18 +320,7 @@ body {
     height: 18px !important;
 }
 
-.btn-loader {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #ffffff;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* Rodapé do Cartão com Escudo Verde */
+/* Rodapé do Cartão */
 .login-footer {
     display: flex;
     align-items: center;
@@ -447,7 +337,6 @@ body {
     width: 36px;
     height: 36px;
     background-color: #e6f7ef;
-    color: #00e676;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -455,7 +344,7 @@ body {
     flex-shrink: 0;
 }
 
-.shield-icon svg { width: 18px; height: 18px; }
+.shield-icon svg { width: 18px !important; height: 18px !important; }
 
 .request-link {
     color: var(--primary-blue);
@@ -465,40 +354,20 @@ body {
 
 .chevron { font-size: 15px; font-weight: 700; }
 
-/* =========================================================
-   RESPONSIVIDADE (MOBILE)
-========================================================= */
+/* Responsividade */
 @media (max-width: 992px) {
-    .login-page {
-        flex-direction: column;
-    }
-
+    .login-page { flex-direction: column; }
     .brand-section {
         flex: none;
-        background: radial-gradient(circle at 50% 30%, #032b80 0%, #011238 100%);
         padding: 36px 20px 50px 20px;
     }
-
-    .brand-section::after, .brand-section::before {
-        display: none;
-    }
-
-    .brand-header {
-        justify-content: center;
-    }
-
-    .brand-content, .feature-icons {
-        display: none;
-    }
-
+    .brand-section::after, .brand-section::before { display: none; }
+    .brand-header { justify-content: center; }
+    .brand-content, .feature-icons { display: none; }
     .form-section {
         padding: 0 16px 32px 16px;
         margin-top: -24px;
         background: transparent;
     }
-
-    .login-card {
-        padding: 32px 20px;
-        border-radius: 18px;
-    }
+    .login-card { padding: 32px 20px; border-radius: 18px; }
 }
