@@ -14,9 +14,21 @@ const urlsToCache = [
   './style/tables.css',
   './style/modals.css',
   './style/animations.css',
-  './login-script.js', 
-  './script.js',
-  './firebase-config.js',
+  // Arquivos dentro da pasta script/
+  './script/app.js',
+  './script/firebase.js',
+  './script/auth.js',
+  './script/dashboard.js',
+  './script/produtos.js',
+  './script/cards.js',
+  './script/scanner.js',
+  './script/setores.js',
+  './script/colaboradores.js',
+  './script/favoritos.js',
+  './script/filtros.js',
+  './script/notificacoes.js',
+  './script/theme.js',
+  './script/utils.js',
   './manifest.json'
 ];
 
