@@ -7,6 +7,7 @@ import { escutarColaboradores, preencherSelectColaboradores } from "./colaborado
 import { renderizarCards } from "./cards.js";
 import { exibirAlerta } from "./notificacoes.js";
 import { inicializarScanner } from "./scanner.js";
+import { formatarDataBR } from "./utils.js";
 
 // -------------------------------------------------------------
 // EXPOSIÇÃO GLOBAL
@@ -35,7 +36,7 @@ function navegarPara(idView) {
 
     if (!idView) return;
 
-    // Esconde todas as páginas secundárias
+    // Esconde todas as views secundárias
     todasViews.forEach(v => v.classList.add('hidden'));
 
     if (idView === 'view-dashboard' || idView === 'dashboard') {
@@ -46,37 +47,67 @@ function navegarPara(idView) {
         const viewAlvo = document.getElementById(idView);
         if (viewAlvo) {
             viewAlvo.classList.remove('hidden');
-        } else {
-            console.warn(`A view com id "${idView}" não foi encontrada no HTML.`);
         }
         if (btnBack) btnBack.classList.remove('hidden');
     }
 }
 
 // -------------------------------------------------------------
-// INICIALIZAÇÃO E EVENTOS DO DOM
+// RENDERIZADOR DE TABELA (PARA A TELA DA SUA IMAGEM)
+// -------------------------------------------------------------
+function renderizarTabelaProdutos(produtos, tableBodyElement) {
+    if (!tableBodyElement) return;
+
+    if (!produtos || produtos.length === 0) {
+        tableBodyElement.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 20px;">Nenhum produto cadastrado.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    tableBodyElement.innerHTML = produtos.map(p => `
+        <tr>
+            <td>${p.codigoBarras || 'N/A'}</td>
+            <td><strong>${p.nome || 'Sem nome'}</strong></td>
+            <td>${p.setor || 'Geral'}</td>
+            <td>${p.quantidade || 0}</td>
+            <td>${p.validade ? (formatarDataBR ? formatarDataBR(p.validade) : p.validade) : 'N/A'}</td>
+            <td>
+                <button onclick="window.excluirProdutoGlobal('${p.id}')" style="background: none; border: none; cursor: pointer; font-size: 1.1rem;" title="Excluir">
+                    🗑️
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// -------------------------------------------------------------
+// INICIALIZAÇÃO DO DOM
 // -------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Guarda de Rota (Segurança)
     monitorarSessao();
 
-    // Cache de Elementos da DOM
+    // Elementos principais
     const btnLogout = document.getElementById('btn-logout');
     const btnHome = document.getElementById('btn-home');
     const btnBack = document.getElementById('btn-back');
     const cardsContainer = document.getElementById('cards-container');
     const productForm = document.getElementById('product-form');
 
-    // 2. Escuta cliques em TODOS os cards do Dashboard (dinâmico)
+    // Tabela da tela "Lista de Produtos Coletados"
+    const tabelaColetados = document.querySelector('#view-coletados tbody') || 
+                             document.querySelector('table tbody') || 
+                             document.getElementById('table-coletados-body');
+
+    // Mapeia cliques nos Cards do Dashboard
     const todosOsCards = document.querySelectorAll('.card, .card-dash, [id^="btn-card-"]');
     
     todosOsCards.forEach(card => {
-        card.style.cursor = 'pointer'; // Garante o ponteiro de clique
-        
-        card.addEventListener('click', (e) => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
             const id = card.id;
-            
-            // Mapeia o ID do card para a View correspondente
             if (id.includes('adicionar') || id.includes('add')) navegarPara('view-add-product');
             else if (id.includes('avencer')) navegarPara('view-avencer');
             else if (id.includes('coletados') || id.includes('conferidos')) navegarPara('view-coletados');
@@ -88,40 +119,35 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (id.includes('estatistica')) navegarPara('view-estatistica');
             else if (id.includes('excluidos')) navegarPara('view-excluidos');
             else {
-                // Tenta abrir direto pelo ID do target se existir no card
                 const targetView = card.getAttribute('data-target');
                 if (targetView) navegarPara(targetView);
             }
         });
     });
 
-    // Botões de Navegação do Topo
+    // Navegação do Topo
     if (btnHome) btnHome.addEventListener('click', () => navegarPara('view-dashboard'));
     if (btnBack) btnBack.addEventListener('click', () => navegarPara('view-dashboard'));
     if (btnLogout) btnLogout.addEventListener('click', realizarLogout);
 
-    // Campos do formulário
+    // Formulários
     const selectSetorForm = document.getElementById('product-sector') || document.getElementById('product-setor');
     const selectFiltroSetor = document.getElementById('filter-setor');
 
-    // Estado Local
     let todosProdutos = [];
 
-    // Escuta Setores
+    // Carrega Setores
     escutarSetores((setores) => {
         const listaSetores = setores || [];
         if (selectFiltroSetor) preencherSelectSetores(selectFiltroSetor, listaSetores, "Todos os Setores");
         if (selectSetorForm) preencherSelectSetores(selectSetorForm, listaSetores, "Selecione um Setor");
     });
 
-    // Escuta Colaboradores
-    escutarColaboradores(() => {});
-
-    // Escuta Produtos em tempo real do Firestore
+    // Carrega Produtos em Tempo Real do Firestore
     escutarProdutos((produtos) => {
         todosProdutos = produtos || [];
         
-        // Atualiza contadores dos cards na tela
+        // Contadores dos Cards
         const countAvencer = document.getElementById('count-avencer');
         const countColetados = document.getElementById('count-coletados') || document.getElementById('count-conferidos');
         const countCloud = document.getElementById('count-cloud') || document.getElementById('count-database');
@@ -138,6 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (countColetados) countColetados.textContent = todosProdutos.length;
         if (countCloud) countCloud.textContent = todosProdutos.length;
 
+        // Renderiza na Tabela da tela "Lista de Produtos Coletados"
+        if (tabelaColetados) {
+            renderizarTabelaProdutos(todosProdutos, tabelaColetados);
+        }
+
+        // Renderiza em Cards no container genérico (se existir)
         if (cardsContainer) {
             renderizarCards(todosProdutos, cardsContainer, {
                 onExcluir: window.excluirProdutoGlobal
@@ -145,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Submissão do Formulário de Adicionar Produto
+    // Submissão do Formulário
     if (productForm) {
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -176,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scanner
+    // Leitor de Código de Barras
     const inputBarcode = document.getElementById('product-barcode');
     if (inputBarcode) {
         inicializarScanner(inputBarcode, (codigo) => {
