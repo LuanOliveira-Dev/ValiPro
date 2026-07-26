@@ -9,16 +9,16 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
-    <!-- CSS do Sistema -->
-    <link rel="stylesheet" href="style/app.css">
-    <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/dashboard.css">
-    <link rel="stylesheet" href="style/cards.css">
-    <link rel="stylesheet" href="style/forms.css">
-    <link rel="stylesheet" href="style/tables.css">
-    <link rel="stylesheet" href="style/modals.css">
-    <link rel="stylesheet" href="style/darkmode.css">
-    <link rel="stylesheet" href="style/responsive.css">
+    <!-- CSS do Sistema (Apontando para a pasta 'estilo') -->
+    <link rel="stylesheet" href="estilo/app.css">
+    <link rel="stylesheet" href="estilo/navbar.css">
+    <link rel="stylesheet" href="estilo/dashboard.css">
+    <link rel="stylesheet" href="estilo/cards.css">
+    <link rel="stylesheet" href="estilo/forms.css">
+    <link rel="stylesheet" href="estilo/tables.css">
+    <link rel="stylesheet" href="estilo/modals.css">
+    <link rel="stylesheet" href="estilo/darkmode.css">
+    <link rel="stylesheet" href="estilo/responsive.css">
 
     <!-- Biblioteca para Leitura de Código de Barras -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
@@ -32,7 +32,7 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
             <div class="brand-logo">
-                <img src="assets/logo.png" alt="ValiPro Logo" onerror="this.style.display='none'">
+                <img src="logo.PNG" alt="ValiPro Logo" onerror="this.style.display='none'">
                 <div>
                     <span class="logo-title">ValiPro</span>
                     <span class="logo-sub">Gestão Inteligente de Validades</span>
@@ -166,7 +166,6 @@
                         </div>
                     </div>
 
-                    <!-- Leitor da Câmera -->
                     <div id="scanner-wrapper" class="scanner-container hidden">
                         <div id="reader"></div>
                         <button type="button" id="btn-stop-scan" class="btn-danger">Fechar Câmera</button>
@@ -200,7 +199,7 @@
             </div>
         </div>
 
-        <!-- 3. VIEW: PRODUTOS COLETADOS (CONTAINER DOS NOVOS CARDS V2) -->
+        <!-- 3. VIEW: PRODUTOS COLETADOS (NOVO CONTAINER DE CARDS) -->
         <div id="view-coletados" class="tab-view hidden">
             <div id="product-table-body" class="products-cards-container"></div>
         </div>
@@ -309,7 +308,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT PRINCIPAL (MÓDULO ES6) -->
-    <script type="module" src="script/app.js"></script>
+    <!-- SCRIPT PRINCIPAL (Apontando para a pasta 'roteiro') -->
+    <script type="module" src="roteiro/app.js"></script>
 </body>
 </html>
