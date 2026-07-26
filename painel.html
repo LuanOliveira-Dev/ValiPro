@@ -3,312 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValiPro - Painel</title>
+    <title>ValiPro - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <!-- Base -->
+<link rel="stylesheet" href="style/app.css">
+
+<!-- Estrutura Geral -->
+<link rel="stylesheet" href="style/navbar.css">
+<link rel="stylesheet" href="style/dashboard.css">
+
+<!-- Componentes e Elementos -->
+<link rel="stylesheet" href="style/cards.css">
+<link rel="stylesheet" href="style/forms.css">
+<link rel="stylesheet" href="style/tables.css">
+<link rel="stylesheet" href="style/modals.css">
+<link rel="stylesheet" href="style/animations.css">
+
+<!-- Modificadores Finais -->
+<link rel="stylesheet" href="style/darkmode.css">
+<link rel="stylesheet" href="style/responsive.css">
     
-    <!-- PWA Manifest & Favicon -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-
-    <!-- CSS do Sistema (Apontando para a pasta 'estilo') -->
-    <link rel="stylesheet" href="estilo/app.css">
-    <link rel="stylesheet" href="estilo/navbar.css">
-    <link rel="stylesheet" href="estilo/dashboard.css">
-    <link rel="stylesheet" href="estilo/cards.css">
-    <link rel="stylesheet" href="estilo/forms.css">
-    <link rel="stylesheet" href="estilo/tables.css">
-    <link rel="stylesheet" href="estilo/modals.css">
-    <link rel="stylesheet" href="estilo/darkmode.css">
-    <link rel="stylesheet" href="estilo/responsive.css">
-
-    <!-- Biblioteca para Leitura de Código de Barras -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
+    <!-- NOVA BARRA DE NAVEGAÇÃO DO TOPO -->
     <nav class="main-top-navbar">
-        <div class="nav-left">
-            <button id="btn-home" class="nav-btn-icon" title="Início">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <div class="navbar-left">
+            <button id="btn-toggle-menu" class="btn-menu-hamburger" title="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
-            <div class="brand-logo">
-                <img src="logo.PNG" alt="ValiPro Logo" onerror="this.style.display='none'">
-                <div>
-                    <span class="logo-title">ValiPro</span>
-                    <span class="logo-sub">Gestão Inteligente de Validades</span>
+            <div class="brand-logo-wrapper" id="btn-home" style="cursor: pointer;">
+                <!-- O ícone fica separado para não receber o filtro -->
+                <img src="logo.PNG" alt="ValiPro Icon" class="main-logo-icon-only">
+                <!-- O texto em formato digital para podermos controlar a cor perfeitamente -->
+                <div class="brand-text-wrapper">
+                    <span class="brand-name-text">Vali<span class="brand-name-green">Pro</span></span>
+                    <span class="brand-subtitle-text">Gestão Inteligente de Validades</span>
                 </div>
             </div>
         </div>
-
-        <div class="nav-right">
-            <button id="btn-toggle-theme" class="nav-btn-icon" title="Alternar Tema">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        
+        <div class="navbar-right">
+            <button id="btn-back" class="btn-nav-action hidden" title="Voltar ao Início">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
             </button>
-            <div class="notif-wrapper">
-                <button id="btn-notif" class="nav-btn-icon" title="Notificações">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span id="count-notif-badge" class="badge-count">0</span>
-                </button>
+            
+            <div class="notification-bell-container">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bell-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <span class="notification-badge" id="count-notif-badge">3</span>
             </div>
-            <button id="btn-logout" class="nav-btn-icon logout" title="Sair do Sistema">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            
+            <button id="btn-logout" class="btn-nav-action btn-logout-icon" title="Sair do Sistema">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
             </button>
         </div>
     </nav>
 
-    <!-- CONTAINER PRINCIPAL -->
     <div class="dashboard-container">
-
-        <!-- CABEÇALHO DINÂMICO DA ABA -->
-        <div class="dashboard-header-card">
-            <div class="header-left">
-                <button id="btn-back" class="btn-back-nav hidden">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    Voltar
-                </button>
-                <div>
-                    <h1 id="dashboard-main-title">Painel Geral</h1>
-                    <p id="dashboard-subtitle">Painel Geral de Monitoramento</p>
-                </div>
+        <!-- PAINEL DE TITULO DINÂMICO (AGORA ESTILIZADO CONFORME O MODELO) -->
+        <header class="dashboard-header">
+            <div class="brand">
+                <h1 id="dashboard-main-title">Painel Geral</h1>
+                <p id="dashboard-subtitle">Visão geral do monitoramento de produtos</p>
             </div>
-        </div>
+        </header>
 
-        <!-- 1. VIEW: PAINEL GERAL (CARDS DE NAVEGAÇÃO) -->
-        <div id="view-dashboard" class="tab-view">
-            <div class="dashboard-grid">
-                <div class="dash-card" id="btn-card-adicionar">
-                    <span class="dash-icon">+</span>
+        <div id="view-dashboard" class="dashboard-grid">
+            
+            <div class="dash-card card-green" id="btn-card-adicionar">
+                <div class="card-icon">➕</div>
+                <div class="card-info">
                     <h3>ADICIONAR</h3>
-                    <p class="dash-sub">Novo Registro</p>
-                </div>
-                <div class="dash-card" id="btn-card-avencer">
-                    <span class="dash-icon">📅</span>
-                    <h3>A VENCER</h3>
-                    <p class="dash-value" id="count-avencer">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">☑️</span>
-                    <h3>CONFERIDOS</h3>
-                    <p class="dash-value" id="count-conferidos">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">❌</span>
-                    <h3>VENCIDOS</h3>
-                    <p class="dash-value" id="count-vencidos">0</p>
-                </div>
-                <div class="dash-card" id="btn-card-coletados">
-                    <span class="dash-icon">📦</span>
-                    <h3>PRODUTOS COLETADOS</h3>
-                    <p class="dash-value" id="count-coletados">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">⭐</span>
-                    <h3>MARCADOS</h3>
-                    <p class="dash-value">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">💲</span>
-                    <h3>REBAIXAS</h3>
-                    <p class="dash-value">0</p>
-                </div>
-                <div class="dash-card" id="btn-card-colaborador">
-                    <span class="dash-icon">👥</span>
-                    <h3>COLABORADOR</h3>
-                    <p class="dash-value" id="count-colaboradores">0</p>
-                </div>
-                <div class="dash-card" id="btn-card-setor">
-                    <span class="dash-icon">📍</span>
-                    <h3>SETOR</h3>
-                    <p class="dash-value" id="count-setores">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">🏪</span>
-                    <h3>LOJAS</h3>
-                    <p class="dash-value">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">🚚</span>
-                    <h3>FORNECEDOR</h3>
-                    <p class="dash-value">0</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">📊</span>
-                    <h3>ESTATÍSTICA</h3>
-                    <p class="dash-sub">Validade</p>
-                </div>
-                <div class="dash-card" id="btn-card-config">
-                    <span class="dash-icon">⚙️</span>
-                    <h3>CONFIGURAÇÃO</h3>
-                    <p class="dash-sub">Ajustes</p>
-                </div>
-                <div class="dash-card">
-                    <span class="dash-icon">🗑️</span>
-                    <h3>PRODUTOS</h3>
-                    <p class="dash-sub">Excluídos</p>
-                </div>
-                <div class="dash-card" id="btn-card-database">
-                    <span class="dash-icon">🗄️</span>
-                    <h3>BANCO DE DADOS</h3>
-                    <p class="dash-value" id="count-cloud">0</p>
                 </div>
             </div>
+
+            <div class="dash-card card-blue" id="btn-card-avencer">
+                <div class="card-icon">📅</div>
+                <div class="card-info">
+                    <h3>A VENCER</h3>
+                    <span class="card-counter" id="count-avencer">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-lightgreen">
+                <div class="card-icon">✅</div>
+                <div class="card-info">
+                    <h3>CONFERIDOS</h3>
+                    <span class="card-counter" id="count-conferidos">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-red">
+                <div class="card-icon">❌</div>
+                <div class="card-info">
+                    <h3>VENCIDOS</h3>
+                    <span class="card-counter" id="count-vencidos">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-purple" id="btn-card-coletados">
+                <div class="card-icon">📦</div>
+                <div class="card-info">
+                    <h3>PRODUTOS COLETADOS</h3>
+                    <span class="card-counter" id="count-coletados">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-yellow">
+                <div class="card-icon">⭐</div>
+                <div class="card-info">
+                    <h3>MARCADOS</h3>
+                    <span class="card-counter">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-lightpurple">
+                <div class="card-icon">💵</div>
+                <div class="card-info">
+                    <h3>REBAIXAS</h3>
+                    <span class="card-counter">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-darkblue" id="btn-card-colaborador">
+                <div class="card-icon">👥</div>
+                <div class="card-info">
+                    <h3>COLABORADOR</h3>
+                    <span class="card-counter" id="count-colaboradores">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-darkpurple" id="btn-card-setor">
+                <div class="card-icon">📍</div>
+                <div class="card-info">
+                    <h3>SETOR</h3>
+                    <span class="card-counter" id="count-setores">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-pink">
+                <div class="card-icon">🏪</div>
+                <div class="card-info">
+                    <h3>LOJAS</h3>
+                    <span class="card-counter">0</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-teal">
+                <div class="card-icon">🚚</div>
+                <div class="card-info">
+                    <h3>FORNECEDOR</h3>
+                    <span class="card-counter">0</span>
+                </div>
+            </div>
+            
+            <div class="dash-card card-orange">
+                <div class="card-icon">📊</div>
+                <div class="card-info">
+                    <h3>ESTATÍSTICA</h3>
+                    <span class="card-title-lg">Validade</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-cyan" id="btn-card-config">
+                <div class="card-icon">⚙️</div>
+                <div class="card-info">
+                    <h3>CONFIGURAÇÃO</h3>
+                </div>
+            </div>
+
+            <div class="dash-card card-brown">
+                <div class="card-icon">🗑️</div>
+                <div class="card-info">
+                    <h3>PRODUTOS</h3>
+                    <span class="card-title-lg">Excluídos</span>
+                </div>
+            </div>
+
+            <div class="dash-card card-slate" id="btn-card-database">
+                <div class="card-icon">🗄️</div>
+                <div class="card-info">
+                    <h3>BANCO DE DADOS</h3>
+                    <span class="card-counter" id="count-cloud">0</span>
+                </div>
+            </div>
+
         </div>
 
-        <!-- 2. VIEW: ADICIONAR PRODUTO -->
-        <div id="view-add-product" class="tab-view hidden">
-            <div class="form-container">
-                <form id="product-form">
-                    <div class="form-group">
-                        <label for="product-barcode">Código de Barras</label>
-                        <div class="input-with-btn">
-                            <input type="text" id="product-barcode" placeholder="Escaneie ou digite o código">
-                            <button type="button" id="btn-scan" class="btn-secondary">Câmera</button>
+        <div id="view-add-product" class="page-content hidden">
+            <section class="module-section">
+                <h2>Adicionar Novo Produto</h2>
+                <div id="scanner-wrapper" class="hidden">
+                    <div id="reader"></div>
+                    <button type="button" id="btn-stop-scan" class="btn-scan-stop">Fechar Câmera</button>
+                </div>
+                <form id="product-form" class="product-form">
+                    <div class="form-row-group">
+                        <div class="form-group size-medium" id="wrapper-barcode">
+                            <label for="product-barcode">Código de Barras</label>
+                            <input type="text" id="product-barcode" placeholder="Código">
+                        </div>
+                        
+                        <div class="form-group size-mini" id="wrapper-quantity">
+                            <label for="product-quantity">Qtd.</label>
+                            <input type="number" id="product-quantity" min="1" placeholder="Ex: 5" required>
+                        </div>
+
+                        <div class="form-group size-medium" id="wrapper-scan">
+                            <label class="label-scan-desktop">&nbsp;</label>
+                            <button type="button" id="btn-scan" class="btn-scan-trigger-new" title="Escanear com a câmera">📷 Escanear Código</button>
                         </div>
                     </div>
 
-                    <div id="scanner-wrapper" class="scanner-container hidden">
-                        <div id="reader"></div>
-                        <button type="button" id="btn-stop-scan" class="btn-danger">Fechar Câmera</button>
-                    </div>
-
-                    <div class="form-group">
+                    <div class="form-group size-large">
                         <label for="product-name">Nome do Produto</label>
-                        <input type="text" id="product-name" placeholder="Ex: PIPOCA MICRO ZAELI 100G" required>
+                        <input type="text" id="product-name" placeholder="Ex: Feijão Carioca 1kg" required>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="product-quantity">Quantidade</label>
-                            <input type="number" id="product-quantity" min="1" value="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="product-expiry">Data de Vencimento</label>
-                            <input type="date" id="product-expiry" required>
-                        </div>
+                    
+                    <div class="form-group size-medium">
+                        <label for="product-expiry">Data de Vencimento</label>
+                        <input type="date" id="product-expiry" required>
                     </div>
-
-                    <div class="form-group">
+                    <div class="form-group size-medium">
                         <label for="product-sector">Setor</label>
                         <select id="product-sector" required>
                             <option value="">Selecione um Setor</option>
                         </select>
                     </div>
+                    <button type="submit" class="btn-submit-prod">Salvar Produto</button>
+                </form>
+            </section>
+        </div>
 
-                    <button type="submit" class="btn-primary">Salvar Produto</button>
+        <div id="modal-sector" class="modal hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 2000;">
+            <div class="modal-content" style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px;">
+                <h3>Adicionar Novo Setor</h3>
+                <form id="sector-form" style="margin-top: 15px;">
+                    <div class="form-field" style="margin-bottom: 15px;">
+                        <label for="new-sector-name">Nome do Setor</label>
+                        <input type="text" id="new-sector-name" placeholder="Ex: Mercearia, Frios, Bebidas" required style="width: 100%; padding: 8px; margin-top: 5px;">
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" id="btn-close-sector-modal" style="background: #cbd5e1; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">Cancelar</button>
+                        <button type="submit" style="background: #2563eb; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>
 
-        <!-- 3. VIEW: PRODUTOS COLETADOS (NOVO CONTAINER DE CARDS) -->
-        <div id="view-coletados" class="tab-view hidden">
-            <div id="product-table-body" class="products-cards-container"></div>
-        </div>
-
-        <!-- 4. VIEW: PRODUTOS A VENCER -->
-        <div id="view-avencer" class="tab-view hidden">
-            <div class="filter-bar">
-                <label for="filter-sector-avencer">Filtrar por Setor:</label>
-                <select id="filter-sector-avencer">
-                    <option value="todos">Todos os Setores</option>
-                </select>
-            </div>
-            <div class="table-wrapper">
-                <table class="product-table">
-                    <thead>
-                        <tr>
-                            <th>Cód. Barras</th>
-                            <th>Produto</th>
-                            <th>Setor</th>
-                            <th>Qtd</th>
-                            <th>Vencimento</th>
-                            <th>Faltam</th>
-                        </tr>
-                    </thead>
-                    <tbody id="avencer-table-body"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- 5. VIEW: GERENCIAR SETORES -->
-        <div id="view-setor" class="tab-view hidden">
-            <div class="form-container mb-20">
-                <form id="direct-sector-form" class="form-row">
-                    <input type="text" id="direct-sector-name" placeholder="NOME DO NOVO SETOR" required>
-                    <button type="submit" class="btn-primary">Cadastrar Setor</button>
-                </form>
-            </div>
-            <div class="table-wrapper">
-                <table class="product-table">
-                    <thead>
-                        <tr>
-                            <th>Setor</th>
-                            <th style="text-align: center;">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sector-table-body"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- 6. VIEW: GERENCIAR COLABORADORES -->
-        <div id="view-colaborador" class="tab-view hidden">
-            <div class="form-container mb-20">
-                <form id="direct-colaborador-form" class="form-row">
-                    <input type="text" id="direct-colaborador-name" placeholder="NOME DO COLABORADOR" required>
-                    <button type="submit" class="btn-primary">Cadastrar Colaborador</button>
-                </form>
-            </div>
-            <div class="table-wrapper">
-                <table class="product-table">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th style="text-align: center;">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="colaborador-table-body"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- 7. VIEW: BANCO DE DADOS (NUVEM) -->
-        <div id="view-database" class="tab-view hidden">
-            <div class="form-container">
-                <h3 id="panel-cloud-counter">0 PRODUTOS NA NUVEM</h3>
-                <p class="text-sub">Importe uma lista em formato CSV para cadastrar produtos automaticamente pelo código de barras.</p>
-                <div class="form-group mt-20">
-                    <label for="csv-file-input" class="btn-secondary text-center custom-file-btn">
-                        Selecionar Arquivo CSV
-                    </label>
-                    <input type="file" id="csv-file-input" accept=".csv" class="hidden">
+        <div id="view-coletados" class="page-content hidden">
+            <section class="module-section">
+                <h2>Lista de Produtos Coletados</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cód. Barras</th>
+                                <th style="width: 35%;">Produto</th>
+                                <th>Setor</th>
+                                <th>Qtd</th>
+                                <th>Vencimento</th>
+                                <th style="width: 10%; text-align: center;">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body"></tbody>
+                    </table>
                 </div>
-            </div>
+            </section>
         </div>
 
-        <!-- 8. VIEW: CONFIGURAÇÕES -->
-        <div id="view-configuracao" class="tab-view hidden">
-            <div class="form-container">
-                <h3>Configurações do Sistema</h3>
-                <p class="text-sub">ValiPro - Versão 1.1.0</p>
-            </div>
+        <div id="view-database" class="page-content hidden">
+            <section class="module-section db-box">
+                <div class="db-header-row">
+                    <h2 class="db-title">☁️ Banco de Dados</h2>
+                    <span class="badge-cloud" id="panel-cloud-counter">0 PRODUTOS NA NUVEM</span>
+                </div>
+                
+                <p class="db-subtitle">▼ Gerenciar Banco (Importar CSV)</p>
+                
+                <div class="csv-upload-area">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="csv-file-input" accept=".csv">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-avencer" class="page-content hidden">
+            <section class="module-section">
+                <h2>Produtos a Vencer (Próximos 10 dias)</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cód. Barras</th>
+                                <th>Produto</th>
+                                <th>Setor</th>
+                                <th>Qtd</th>
+                                <th>Vencimento</th>
+                                <th>Faltam</th>
+                            </tr>
+                        </thead>
+                        <tbody id="avencer-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-setor" class="page-content hidden">
+            <section class="module-section">
+                <h2>🏢 Cadastrar e Gerenciar Setores</h2>
+                
+                <form id="direct-sector-form" class="product-form" style="margin-bottom: 24px; align-items: flex-end;">
+                    <div class="form-group size-large">
+                        <label for="direct-sector-name">Nome do Novo Setor</label>
+                        <input type="text" id="direct-sector-name" placeholder="Ex: BEBIDAS, MERCEARIA, FRIOS" required>
+                    </div>
+                    <button type="submit" class="btn-submit-prod" style="background-color: #16a34a;">+ Cadastrar Setor</button>
+                </form>
+
+                <h3 style="font-size: 16px; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Setores Existentes</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome do Setor</th>
+                                <th style="width: 15%; text-align: center;">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sector-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-colaborador" class="page-content hidden">
+            <section class="module-section">
+                <h2>👥 Cadastrar e Gerenciar Colaboradores</h2>
+                
+                <form id="direct-colaborador-form" class="product-form" style="margin-bottom: 24px; align-items: flex-end;">
+                    <div class="form-group size-large">
+                        <label for="direct-colaborador-name">Nome do Novo Colaborador</label>
+                        <input type="text" id="direct-colaborador-name" placeholder="Ex: JOÃO SILVA, MARIA SOUZA" required>
+                    </div>
+                    <button type="submit" class="btn-submit-prod" style="background-color: #16a34a;">+ Cadastrar Colaborador</button>
+                </form>
+
+                <h3 style="font-size: 16px; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Colaboradores Existentes</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome do Colaborador</th>
+                                <th style="width: 15%; text-align: center;">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="colaborador-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- MÓDULO CONFIGURAÇÕES -->
+        <div id="view-configuracao" class="page-content hidden">
+            <section class="module-section">
+                <h2>⚙️ Configurações do Sistema</h2>
+                
+                <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 16px;">
+                    <p style="font-size: 14px; color: var(--text-secondary);">Ajuste as preferências visuais e comportamentais do ValiPro.</p>
+                    
+                    <div style="display: flex; align-items: center; gap: 12px; background: var(--bg-input); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <span style="font-size: 24px;">🌓</span>
+                        <div style="flex: 1;">
+                            <strong style="display: block; font-size: 15px;">Tema do Sistema</strong>
+                            <span style="font-size: 13px; color: var(--text-secondary);">Alterne entre os modos claro e escuro.</span>
+                        </div>
+                        <button type="button" id="btn-toggle-theme" class="btn-submit-prod" style="width: auto; height: 38px; padding: 0 16px; margin: 0; background-color: #475569;">
+                            Alternar Tema
+                        </button>
+                    </div>
+                </div>
+            </section>
         </div>
 
     </div>
 
-    <!-- MODAL DE NOTIFICAÇÕES -->
-    <div id="modal-notif" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Notificações</h3>
-                <button id="btn-close-notif" class="btn-close">&times;</button>
-            </div>
-            <div class="modal-body" id="notif-list-container">
-                <p class="text-empty">Nenhuma notificação recente.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- SCRIPT PRINCIPAL (Apontando para a pasta 'roteiro') -->
-    <script type="module" src="roteiro/app.js"></script>
+    <script type="module" src="script/app.js"></script>
 </body>
 </html>
