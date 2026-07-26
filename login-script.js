@@ -1,5 +1,5 @@
 // Importa o serviço de autenticação do seu arquivo central
-import { auth } from "./script/firebase.js";
+import { auth } from "./firebase-config.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -71,13 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnLoader) btnLoader.classList.remove('hidden');
 
             try {
-               // Autenticação real no Firebase
-        await signInWithEmailAndPassword(auth, email, password);
-
-        showAlert('Acesso autorizado! Redirecionando...', 'success');
-
-        // Redireciona imediatamente sem delay e sem recalcular basePath
-        window.location.replace('painel.html');
+                // Autenticação real no Firebase
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                showAlert('Acesso autorizado! Redirecionando...', 'success');
+                
+                setTimeout(() => {
+                    const currentPath = window.location.pathname;
+                    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+                    window.location.replace(window.location.origin + basePath + "painel.html");
+                }, 800);
 
             } catch (error) {
                 console.error("Erro no login:", error);
