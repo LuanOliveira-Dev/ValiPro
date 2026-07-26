@@ -5,7 +5,6 @@ import { escutarProdutos, salvarProduto, excluirProduto } from "./produtos.js";
 import { escutarSetores, preencherSelectSetores } from "./setores.js";
 import { escutarColaboradores, preencherSelectColaboradores } from "./colaboradores.js";
 import { renderizarCards } from "./cards.js";
-import { filtrarEOrdenarProdutos } from "./filtros.js";
 import { exibirAlerta } from "./notificacoes.js";
 import { inicializarScanner } from "./scanner.js";
 
@@ -27,7 +26,7 @@ window.excluirProdutoGlobal = async function(id) {
 };
 
 // -------------------------------------------------------------
-// NAVEGAÇÃO DE VIEWS / MÓDULOS
+// NAVEGAÇÃO ENTRE AS TELAS/VIEWS DO PAINEL
 // -------------------------------------------------------------
 function navegarPara(idView) {
     const gridDashboard = document.getElementById('view-dashboard');
@@ -52,7 +51,7 @@ function navegarPara(idView) {
 // INICIALIZAÇÃO E EVENTOS DO DOM
 // -------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Guarda de Rota
+    // 1. Guarda de Rota (Segurança)
     monitorarSessao();
 
     // Cache de Elementos da DOM
@@ -83,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Botões de Topo / Navegação
+    // Botões de Navegação do Topo
     if (btnHome) btnHome.addEventListener('click', () => navegarPara('view-dashboard'));
     if (btnBack) btnBack.addEventListener('click', () => navegarPara('view-dashboard'));
     if (btnLogout) btnLogout.addEventListener('click', realizarLogout);
@@ -109,19 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
         todosColaboradores = colaboradores || [];
     });
 
-    // Escuta Produtos em tempo real
+    // Escuta Produtos em tempo real do Firestore
     escutarProdutos((produtos) => {
         todosProdutos = produtos || [];
         
-        // Atualiza contadores dos cards
+        // Atualiza os números nos Cards do Dashboard
         const countAvencer = document.getElementById('count-avencer');
         const countColetados = document.getElementById('count-coletados');
         const countCloud = document.getElementById('count-cloud');
 
-        if (countAvencer) countAvencer.textContent = todosProdutos.filter(p => {
-            const diff = (new Date(p.validade) - new Date()) / (1000 * 60 * 60 * 24);
-            return diff >= 0 && diff <= 10;
-        }).length;
+        if (countAvencer) {
+            const prestesAVencer = todosProdutos.filter(p => {
+                if (!p.validade) return false;
+                const diff = (new Date(p.validade) - new Date()) / (1000 * 60 * 60 * 24);
+                return diff >= 0 && diff <= 10;
+            });
+            countAvencer.textContent = prestesAVencer.length;
+        }
 
         if (countColetados) countColetados.textContent = todosProdutos.length;
         if (countCloud) countCloud.textContent = todosProdutos.length;
