@@ -4,27 +4,22 @@ import { showAlert } from "./utils.js";
 
 // Inicializa os ouvintes de autenticação da tela de Login (se existir na página)
 export function initAuth() {
-  const loginForm = document.getElementById('login-form');
-  const passwordInput = document.getElementById('password');
-  const togglePasswordBtn = document.getElementById('toggle-password');
-  const eyeIcon = document.getElementById('eye-icon');
+    const loginForm = document.getElementById('login-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const btnSubmit = document.getElementById('btn-submit');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const eyeIcon = document.getElementById('eye-icon');
 
-  if (togglePasswordBtn && passwordInput && eyeIcon) {
-    togglePasswordBtn.addEventListener('click', () => {
-      const isPassword = passwordInput.getAttribute('type') === 'password';
-      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-      
-      // Alterna o ícone entre Olho Aberto e Fechado
-      if (isPassword) {
-        eyeIcon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`;
-      } else {
-        eyeIcon.innerHTML = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
-      }
-    });
-  }
-
-  // Mantém a submissão do Firebase existente...
-}
+    if (togglePasswordBtn && eyeIcon) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            eyeIcon.innerHTML = isPassword 
+                ? `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line>`
+                : `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>`;
+        });
+    }
 
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
