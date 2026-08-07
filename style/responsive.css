@@ -185,36 +185,4 @@
         display: flex !important;
         flex-flow: row wrap !important;
     }
-    
-/* ==========================================================================
-   AJUSTE DE RESPONSIVIDADE - TELA DE LOGIN (CELULAR / TABLET)
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-  /* Muda o layout de Lado a Lado para Empilhado (Cima/Baixo) */
-  .login-split-container {
-    flex-direction: column;
-  }
-
-  /* Ajusta o topo no celular */
-  .login-sidebar {
-    padding: 32px 24px 20px 24px;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* Esconde os 3 cards de texto no celular para não poluir a tela pequena */
-  .sidebar-content {
-    display: none;
-  }
-
-  /* Centraliza e ajusta o cartão de login */
-  .login-main {
-    padding: 24px 16px;
-  }
-
-  .login-card {
-    padding: 28px 20px;
-    border-radius: 16px;
-  }
-}  
+}
