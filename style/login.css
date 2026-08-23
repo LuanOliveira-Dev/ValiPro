@@ -1,3 +1,4 @@
+/* Root variables */
 :root {
   --primary-blue: #1d4ed8;
   --primary-blue-hover: #1e40af;
@@ -37,17 +38,41 @@ body, html {
 /* ===================================================
    LADO ESQUERDO (HERO / BANNER DESTAQUE)
    =================================================== */
+/* Lado esquerdo com a borda verde integrada diretamente na diagonal */
 .left-hero {
   flex: 1.1;
   background: linear-gradient(135deg, #010d29 0%, #032363 50%, #053b94 100%);
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 60px 80px;
   color: #ffffff;
   z-index: 1;
+  /* Inclina todo o bloco azul junto com a linha verde */
+  clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+  margin-right: -10%;
+}
+
+/* Cria a faixa verde perfeitamente colada no limite direito do painel azul */
+.left-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px; /* Espessura da linha verde */
+  height: 100%;
+  background-color: #00b368;
+  z-index: 3;
+}
+
+/* Recorte da diagonal cobrindo ambos os lados de forma limpa */
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f8fafc;
 }
 
 /* Estilo da imagem do Logo Oficial */
@@ -57,7 +82,7 @@ body, html {
   object-fit: contain;
 }
 
-/* Borda diagonal verde fina e alinhada ao corte */
+/* Borda diagonal verde fina e alinhada ao corte (antigo, mantido para compatibilidade caso precise) */
 .hero-diagonal-border {
   position: absolute;
   top: -10%;
@@ -232,10 +257,7 @@ body, html {
   align-items: center;
   justify-content: center;
   padding: 40px;
-  position: relative;
   z-index: 2;
-  clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
-  margin-left: -70px;
 }
 
 .login-card-wrapper {
