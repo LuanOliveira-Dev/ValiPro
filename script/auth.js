@@ -7,43 +7,35 @@ export function initAuth() {
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    const btnSubmit = document.getElementById('btn-submit') || document.querySelector('button[type="submit"]');
+    const btnSubmit = document.getElementById('btn-submit');
     const togglePasswordBtn = document.getElementById('toggle-password');
-    const eyeIcon = document.getElementById('eye-icon') || togglePasswordBtn;
+    const eyeIcon = document.getElementById('eye-icon');
 
-    // Alternar visibilidade da senha (ícone do olho)
-    if (togglePasswordBtn && passwordInput) {
-        togglePasswordBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+    if (togglePasswordBtn && eyeIcon) {
+        togglePasswordBtn.addEventListener('click', () => {
             const isPassword = passwordInput.getAttribute('type') === 'password';
             passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-            
-            const svgTarget = eyeIcon.tagName.toLowerCase() === 'svg' ? eyeIcon : eyeIcon.querySelector('svg');
-            
-            if (svgTarget) {
-                svgTarget.innerHTML = isPassword 
-                    ? `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line>`
-                    : `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>`;
-            }
+            eyeIcon.innerHTML = isPassword 
+                ? `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line>`
+                : `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>`;
         });
     }
 
-    // Submissão do Formulário de Login
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = emailInput ? emailInput.value.trim() : '';
-            const password = passwordInput ? passwordInput.value.trim() : '';
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
 
             if (!email || !password) {
                 showAlert('Por favor, preencha todos os campos.');
                 return;
             }
 
-            const btnText = btnSubmit ? btnSubmit.querySelector('.btn-text') : null;
-            const btnLoader = btnSubmit ? btnSubmit.querySelector('.btn-loader') : null;
+            const btnText = btnSubmit.querySelector('.btn-text');
+            const btnLoader = btnSubmit.querySelector('.btn-loader');
             
-            if (btnSubmit) btnSubmit.disabled = true;
+            btnSubmit.disabled = true;
             if (btnText) btnText.classList.add('hidden');
             if (btnLoader) btnLoader.classList.remove('hidden');
 
@@ -57,7 +49,7 @@ export function initAuth() {
                 }, 800);
             } catch (error) {
                 showAlert(getFriendlyErrorMessage(error.code), 'error');
-                if (btnSubmit) btnSubmit.disabled = false;
+                btnSubmit.disabled = false;
                 if (btnText) btnText.classList.remove('hidden');
                 if (btnLoader) btnLoader.classList.add('hidden');
             }
