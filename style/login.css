@@ -33,15 +33,18 @@ body {
 
 /* Lado Esquerdo (Painel Azul com Divisor Diagonal) */
 .login-left-panel {
-    flex: 1.1;
-    background: linear-gradient(145deg, #091732 0%, #030a17 100%);
+    flex: 1.15;
+    background: linear-gradient(145deg, #071630 0%, #030a17 100%);
     color: #ffffff;
     padding: 50px 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+    /* Ajuste para criar o corte diagonal exato do modelo */
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+    margin-right: -4vw;
+    z-index: 2;
 }
 
 @media (max-width: 968px) {
