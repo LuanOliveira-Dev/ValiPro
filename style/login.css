@@ -420,3 +420,166 @@ body {
         border-radius: 20px;
     }
 }
+
+/* ----------------- MOCKUP OVERRIDES / ADDED STYLES ----------------- */
+:root {
+  --primary-blue: #0f3274;
+  --dark-blue: #071a40;
+  --accent-green: #10b981;
+  --btn-blue: #1d4ed8;
+  --bg-light: #f3f4f6;
+  --text-muted: #6b7280;
+}
+
+/* Background Principal com Degradê Diagonal e Marca d'água */
+.hero-section {
+  background: linear-gradient(135deg, #071e4d 0%, #030d24 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 4rem;
+  color: #ffffff;
+}
+
+/* Marca d'água de Checkmark no Fundo do Hero */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  width: 350px;
+  height: 350px;
+  border: 35px solid rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
+
+/* Cores de Texto e Destaque Verde */
+.green-text {
+  color: var(--accent-green) !important;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Divisória Diagonal com Borda Verde */
+.diagonal-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 38%;
+  width: 3px;
+  background-color: var(--accent-green);
+  transform: skewX(-12deg);
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* Cards e Ícones na Seção de Recursos (Bottom Left) */
+.features-grid {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: auto;
+}
+
+.feature-card {
+  background: transparent;
+}
+
+.feature-icon {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+/* Ajustes no Card de Login */
+.login-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  max-width: 440px;
+  width: 100%;
+}
+
+.avatar-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #eff6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  font-size: 1.5rem;
+  margin: 0 auto 1.5rem auto;
+}
+
+.btn-primary {
+  background-color: var(--btn-blue);
+  color: white;
+  border-radius: 10px;
+  padding: 0.85rem;
+  width: 100%;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1e40af;
+}
+
+/* Footer do Card com o Selo Verde */
+.card-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-icon-badge {
+  width: 40px;
+  height: 40px;
+  background-color: #ecfdf5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-green);
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+}
+
+.footer-text span {
+  color: var(--text-muted);
+}
+
+.footer-text a {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-decoration: none;
+}
