@@ -60,7 +60,7 @@
     position: absolute;
     inset: 0;
     background: var(--login-green);
-    clip-path: polygon(71% 0, 72% 0, 100% 100%, 99% 100%);
+    clip-path: polygon(71.5% 0, 72% 0, 100% 100%, 99% 100%);
     z-index: 3;
 }
 
