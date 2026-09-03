@@ -573,3 +573,32 @@
     .login-footer p { font-size: 14px; }
     .login-footer a { font-size: 15px; }
 }
+
+
+/* =========================================================
+   AJUSTE FINO - POSICIONAMENTO DA LINHA E ESCALA DESKTOP
+   ========================================================= */
+
+/* Reposiciona a faixa verde mais próxima da divisão inclinada */
+@media (min-width: 1251px) {
+    .brand-panel::after {
+        top: -7%;
+        right: 0.8%;
+        height: 134%;
+        transform: rotate(15.4deg);
+        transform-origin: top center;
+    }
+
+    /* Pequeno "zoom out" visual para a tela respirar mais */
+    .brand-panel-content {
+        transform: scale(.94);
+        transform-origin: top left;
+        width: 106.383%;
+        height: 106.383vh;
+    }
+
+    .login-card {
+        transform: scale(.95);
+        transform-origin: center center;
+    }
+}
