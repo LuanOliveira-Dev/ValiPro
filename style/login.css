@@ -58,14 +58,9 @@
 .brand-panel::after {
     content: "";
     position: absolute;
-    width: 7px;
-    height: 132%;
-    top: -8%;
-    right: 25.2%;
+    inset: 0;
     background: var(--login-green);
-    transform: rotate(13.2deg);
-    transform-origin: top center;
-    box-shadow: 0 0 12px rgba(35, 196, 102, .24);
+    clip-path: polygon(71% 0, 72% 0, 100% 100%, 99% 100%);
     z-index: 3;
 }
 
