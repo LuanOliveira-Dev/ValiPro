@@ -582,6 +582,15 @@
    ========================================================= */
 
 /* Mantém a escala do conteúdo em telas largas. */
+@media (min-width: 981px) {
+    .login-page,
+    .login-container,
+    .login-side {
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
 @media (min-width: 1251px) {
     /* Pequeno "zoom out" visual para a tela respirar mais */
     .brand-panel-content {
