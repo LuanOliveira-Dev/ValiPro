@@ -304,10 +304,11 @@
     width: min(100%, 666px);
     padding: 44px 58px 46px;
     border-radius: 21px;
-    background: #f7f8fb;
+    /* Transparente para usar exatamente o mesmo fundo da área externa. */
+    background: transparent;
     border: 1px solid rgba(209, 218, 230, .94);
     box-shadow: 0 24px 58px rgba(57, 80, 119, .13);
-    backdrop-filter: blur(10px);
+    backdrop-filter: none;
 }
 
 .login-header {
@@ -603,7 +604,7 @@
     }
 
     .login-card {
-        transform: scale(.86);
+        transform: scale(.74);
         transform-origin: center center;
     }
 }
