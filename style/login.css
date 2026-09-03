@@ -32,12 +32,18 @@
 }
 
 .login-container {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     max-width: none;
     display: grid;
     grid-template-columns: minmax(570px, 47%) 1fr;
     overflow: hidden;
+    background-color: #f7faff;
+    background-image:
+        radial-gradient(circle, rgba(45, 121, 233, .48) 1px, transparent 1.3px),
+        radial-gradient(circle at 62% 40%, rgba(203, 225, 251, .68), transparent 46%);
+    background-size: 24px 24px, 100% 100%;
 }
 
 /* =========================
@@ -300,11 +306,7 @@
     padding: 38px 52px 38px 110px;
     overflow: hidden;
     isolation: isolate;
-    background-color: #f7faff;
-    background-image:
-        radial-gradient(circle, rgba(45, 121, 233, .48) 1px, transparent 1.3px),
-        radial-gradient(circle at 50% 40%, rgba(203, 225, 251, .68), transparent 46%);
-    background-size: 24px 24px, 100% 100%;
+    background: transparent;
 }
 
 .login-card {
