@@ -106,9 +106,9 @@
 .calendar-rings {
     position: absolute;
     top: -8px;
-    left: 12px;
+    left: 15px;
     display: flex;
-    gap: 13px;
+    gap: 15px;
 }
 
 .calendar-rings span {
