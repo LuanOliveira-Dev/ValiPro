@@ -297,17 +297,14 @@
     align-items: center;
     justify-content: center;
     padding: 38px 52px 38px 110px;
-    background:
-        radial-gradient(circle at 62% 24%, rgba(226, 206, 172, .36), transparent 27%),
-        radial-gradient(circle at 22% 82%, rgba(180, 205, 244, .5), transparent 31%),
-        linear-gradient(135deg, #f7f8fb 0%, #edf1f7 100%);
+    background: #f7f8fb;
 }
 
 .login-card {
     width: min(100%, 666px);
     padding: 44px 58px 46px;
     border-radius: 21px;
-    background: rgba(255, 255, 255, .64);
+    background: #f7f8fb;
     border: 1px solid rgba(209, 218, 230, .94);
     box-shadow: 0 24px 58px rgba(57, 80, 119, .13);
     backdrop-filter: blur(10px);
@@ -606,7 +603,7 @@
     }
 
     .login-card {
-        transform: scale(.90);
+        transform: scale(.86);
         transform-origin: center center;
     }
 }
