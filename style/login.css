@@ -58,13 +58,10 @@
 .brand-panel::after {
     content: "";
     position: absolute;
-    width: 7px;
-    height: 132%;
-    top: -8%;
-    right: 25.2%;
+    inset: 0;
     background: var(--login-green);
-    transform: rotate(13.2deg);
-    transform-origin: top center;
+    /* A borda externa usa os mesmos pontos do recorte do painel. */
+    clip-path: polygon(99.2% 0, 100% 0, 71% 100%, 70.2% 100%);
     box-shadow: 0 0 12px rgba(35, 196, 102, .24);
     z-index: 3;
 }
@@ -579,16 +576,8 @@
    AJUSTE FINO - POSICIONAMENTO DA LINHA E ESCALA DESKTOP
    ========================================================= */
 
-/* Reposiciona a faixa verde mais próxima da divisão inclinada */
+/* Mantém a escala do conteúdo em telas largas. */
 @media (min-width: 1251px) {
-    .brand-panel::after {
-        top: -7%;
-        right: 0.8%;
-        height: 134%;
-        transform: rotate(15.4deg);
-        transform-origin: top center;
-    }
-
     /* Pequeno "zoom out" visual para a tela respirar mais */
     .brand-panel-content {
         transform: scale(.94);
