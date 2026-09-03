@@ -78,20 +78,15 @@
 .brand-top {
     display: flex;
     align-items: center;
+    gap: 14px;
     position: relative;
     z-index: 5;
-}
-
-.brand-logo {
-    display: block;
-    width: clamp(330px, 29vw, 500px);
-    height: auto;
-    max-width: 100%;
+    white-space: nowrap;
 }
 
 .brand-symbol {
-    width: 92px;
-    height: 76px;
+    width: 82px;
+    height: 68px;
     position: relative;
     flex: 0 0 auto;
     border-radius: 14px;
@@ -159,7 +154,7 @@
 
 .brand-name {
     color: #f5f7fb;
-    font-size: clamp(43px, 4vw, 58px);
+    font-size: clamp(42px, 3.2vw, 52px);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -2.8px;
@@ -169,14 +164,14 @@
 
 .brand-divider {
     width: 1px;
-    height: 65px;
-    margin-left: 3px;
+    height: 58px;
+    margin: 0 8px;
     background: rgba(218, 228, 241, .38);
 }
 
 .brand-subtitle {
     color: #e2e8f2;
-    font-size: clamp(16px, 1.35vw, 21px);
+    font-size: clamp(16px, 1.2vw, 18px);
     font-weight: 400;
     line-height: 1.35;
     letter-spacing: .1px;
