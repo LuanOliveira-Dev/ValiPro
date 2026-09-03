@@ -78,10 +78,15 @@
 .brand-top {
     display: flex;
     align-items: center;
-    gap: 22px;
     position: relative;
     z-index: 5;
-    white-space: nowrap;
+}
+
+.brand-logo {
+    display: block;
+    width: clamp(330px, 29vw, 500px);
+    height: auto;
+    max-width: 100%;
 }
 
 .brand-symbol {
@@ -580,14 +585,14 @@
 @media (min-width: 1251px) {
     /* Pequeno "zoom out" visual para a tela respirar mais */
     .brand-panel-content {
-        transform: scale(.94);
+        transform: scale(.90);
         transform-origin: top left;
-        width: 106.383%;
-        height: 106.383vh;
+        width: 111.112%;
+        height: 111.112vh;
     }
 
     .login-card {
-        transform: scale(.95);
+        transform: scale(.90);
         transform-origin: center center;
     }
 }
