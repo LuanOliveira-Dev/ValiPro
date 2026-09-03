@@ -1,137 +1,258 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValiPro - Acesso ao Sistema</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/app.css">
-    <link rel="stylesheet" href="style/login.css">
-</head>
-<body>
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import {
+  ArrowRight,
+  BarChart3,
+  Bell,
+  ChevronRight,
+  Eye,
+  EyeOff,
+  Lock,
+  Mail,
+  ShieldCheck,
+  User,
+} from "lucide-react";
+import logo from "@/assets/valipro-logo.png";
 
-    <div class="login-split-container">
-        <!-- Lado Esquerdo: Painel de Apresentação e Identidade Visual -->
-        <div class="login-left-panel">
-            <div class="left-top-brand">
-                <div class="logo-icon-box">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 11l3 3L22 4"></path>
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                    </svg>
-                </div>
-                <div class="brand-text-group">
-                    <span class="brand-title">Vali<span class="brand-green">Pro</span></span>
-                    <span class="brand-subtitle">Gestão Inteligente de Validades</span>
-                </div>
-            </div>
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ValiPro - Acesso ao Sistema" },
+      {
+        name: "description",
+        content:
+          "Faça login no ValiPro e gerencie a validade dos seus produtos com inteligência e eficiência.",
+      },
+      { property: "og:title", content: "ValiPro - Acesso ao Sistema" },
+      {
+        property: "og:description",
+        content: "Mais controle, menos perdas. Gestão inteligente de validades.",
+      },
+    ],
+  }),
+  component: Login,
+});
 
-            <div class="left-center-content">
-                <div class="watermark-check">
-                    <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <h1 class="hero-heading">Mais <span class="text-green">controle</span>,<br>menos <span class="text-green">perdas</span>.</h1>
-                <p class="hero-description">Gerencie validade de produtos com inteligência e eficiência.</p>
-            </div>
+const features = [
+  {
+    icon: ShieldCheck,
+    title: "Conformidade",
+    text: "Garanta padrões e evite riscos.",
+  },
+  {
+    icon: BarChart3,
+    title: "Análises",
+    text: "Relatórios e insights em tempo real.",
+  },
+  {
+    icon: Bell,
+    title: "Alertas",
+    text: "Receba avisos e evite vencimentos.",
+  },
+];
 
-            <div class="left-bottom-features">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </div>
-                    <div>
-                        <h4>Conformidade</h4>
-                        <p>Garanta padrões e evite riscos.</p>
-                    </div>
+function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <main className="relative flex min-h-screen flex-col bg-background lg:block">
+      {/* Faixa verde diagonal */}
+      <div
+        aria-hidden
+        className="hidden bg-accent-green lg:absolute lg:inset-y-0 lg:left-0 lg:block lg:w-[50%]"
+        style={{ clipPath: "polygon(0 0, 100% 0, 84% 100%, 0 100%)" }}
+      />
+      {/* Painel de marca */}
+      <section
+        className="relative overflow-hidden px-8 py-12 lg:absolute lg:inset-y-0 lg:left-0 lg:w-[50%] lg:px-16 lg:py-14"
+        style={{
+          background: "var(--gradient-navy)",
+          clipPath: "polygon(0 0, 98.6% 0, 82.6% 100%, 0 100%)",
+        }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-40 -left-28 h-[34rem] w-[34rem] rounded-full border-[18px] border-navy-foreground/[0.07]"
+        />
+        <svg
+          aria-hidden
+          viewBox="0 0 200 200"
+          className="pointer-events-none absolute -left-14 top-[36%] h-72 w-72 text-navy-foreground/[0.07]"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="16"
+          strokeLinecap="round"
+        >
+          <path d="M45 105 l38 38 l72 -96" />
+        </svg>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-24 top-[24%] h-24 w-24 rounded-2xl bg-navy-foreground/[0.06]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-6 top-[34%] h-28 w-28 rounded-2xl bg-navy-foreground/[0.05]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-32 top-[44%] h-24 w-24 rounded-2xl border-2 border-navy-foreground/[0.06]"
+        />
+
+        <div className="relative flex h-full flex-col lg:justify-between">
+          <div className="flex items-center gap-4">
+            <img
+              src={logo}
+              alt="Logo ValiPro"
+              width={512}
+              height={512}
+              className="h-16 w-16 object-contain"
+            />
+            <span className="text-4xl font-bold tracking-tight text-navy-foreground">
+              Vali<span className="text-accent-green">Pro</span>
+            </span>
+            <span className="hidden h-12 w-px bg-navy-foreground/20 sm:block" />
+            <p className="hidden text-[15px] leading-snug text-navy-foreground/85 sm:block">
+              Gestão Inteligente
+              <br />
+              de Validades
+            </p>
+          </div>
+
+          <div className="mt-16 lg:mt-0">
+            <h1 className="text-[42px] font-bold leading-[1.15] text-navy-foreground lg:text-5xl">
+              Mais <span className="text-accent-green">controle</span>,
+              <br />
+              menos <span className="text-accent-green">perdas.</span>
+            </h1>
+            <p className="mt-5 max-w-[19rem] text-[15px] leading-relaxed text-navy-muted">
+              Gerencie validade de produtos com inteligência e eficiência.
+            </p>
+
+            <div className="mt-14 grid max-w-md gap-8 sm:grid-cols-3">
+              {features.map(({ icon: Icon, title, text }) => (
+                <div key={title}>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-foreground/10 text-navy-foreground">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h2 className="mt-4 text-sm font-semibold text-navy-foreground">{title}</h2>
+                  <p className="mt-1.5 text-xs leading-relaxed text-navy-muted">{text}</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                    </div>
-                    <div>
-                        <h4>Análises</h4>
-                        <p>Relatórios e insights em tempo real.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    </div>
-                    <div>
-                        <h4>Alertas</h4>
-                        <p>Receba avisos e evite vencimentos.</p>
-                    </div>
-                </div>
+              ))}
             </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Lado Direito: Card de Login -->
-        <div class="login-right-panel">
-            <div class="login-card">
-                <div class="login-header">
-                    <div class="user-avatar-icon">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </div>
-                    <h2>Bem-vindo de volta!</h2>
-                    <p>Faça login para acessar o sistema</p>
-                </div>
 
-                <!-- Caixa de Alerta do Sistema (Exibido em caso de erro no login) -->
-                <div id="alert-box" class="alert hidden">
-                    <span id="alert-message"></span>
-                </div>
+      {/* Formulário */}
+      <section className="relative flex flex-1 items-center justify-center px-6 py-14 lg:ml-[50%] lg:min-h-screen lg:px-12">
 
-                <form id="login-form" class="login-form">
-                    <div class="form-group">
-                        <label for="email">E-mail profissional</label>
-                        <div class="input-with-icon">
-                            <span class="field-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </span>
-                            <input type="email" id="email" placeholder="seu.email@empresa.com" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Senha</label>
-                        <div class="input-with-icon">
-                            <span class="field-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                            </span>
-                            <input type="password" id="password" placeholder="••••••••" required>
-                            <button type="button" id="toggle-password" class="toggle-password-btn" title="Mostrar/Ocultar Senha">
-                                <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-options">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="remember-me">
-                            Lembrar meus dados
-                        </label>
-                        <a href="#" class="forgot-password-link">Esqueceu a senha?</a>
-                    </div>
-
-                    <button type="submit" id="btn-submit" class="btn-submit">
-                        <span>Entrar no Sistema</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                </form>
-
-                <div class="login-footer-card">
-                    <div class="footer-shield-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </div>
-                    <span>Ainda não possui uma conta? <a href="#" class="request-access-link">Solicite acesso &gt;</a></span>
-                </div>
+        <div
+          className="w-full max-w-md rounded-2xl bg-card p-8 sm:p-10"
+          style={{ boxShadow: "var(--shadow-card)" }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand">
+              <User className="h-7 w-7" />
             </div>
-        </div>
-    </div>
+            <div>
+              <h2 className="text-xl font-bold text-card-foreground">Bem-vindo de volta!</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Faça login para acessar o sistema
+              </p>
+            </div>
+          </div>
 
-    <!-- Script de Inicialização -->
-    <script type="module" src="script/app.js"></script>
-</body>
-</html>
+          <hr className="my-7 border-border" />
+
+          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label
+                htmlFor="email"
+                className="mb-2 block text-sm font-semibold text-card-foreground"
+              >
+                E-mail profissional
+              </label>
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-brand" />
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="seu.email@empresa.com"
+                  className="h-14 w-full rounded-xl border border-border bg-card pl-12 pr-4 text-sm text-card-foreground outline-none transition placeholder:text-muted-foreground focus:border-brand focus:ring-4 focus:ring-brand/15"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="mb-2 block text-sm font-semibold text-card-foreground"
+              >
+                Senha
+              </label>
+              <div className="relative">
+                <Lock className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-brand" />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  placeholder="••••••••"
+                  className="h-14 w-full rounded-xl border border-border bg-card pl-12 pr-12 text-sm text-card-foreground outline-none transition placeholder:text-muted-foreground focus:border-brand focus:ring-4 focus:ring-brand/15"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition hover:text-brand"
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 pt-1">
+              <label className="flex items-center gap-2.5 text-sm text-card-foreground">
+                <input
+                  type="checkbox"
+                  className="h-5 w-5 rounded-md border border-border accent-brand"
+                />
+                Lembrar meus dados
+              </label>
+              <a href="#" className="text-sm font-medium text-brand hover:underline">
+                Esqueceu a senha?
+              </a>
+            </div>
+
+            <button
+              type="submit"
+              className="flex h-14 w-full items-center justify-center gap-3 rounded-xl bg-brand text-base font-semibold text-brand-foreground transition hover:bg-brand-hover"
+            >
+              Entrar no Sistema
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          </form>
+
+          <hr className="my-7 border-border" />
+
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-green/10 text-accent-green">
+              <ShieldCheck className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Ainda não possui uma conta?</p>
+              <a
+                href="#"
+                className="mt-0.5 inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline"
+              >
+                Solicite acesso
+                <ChevronRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
