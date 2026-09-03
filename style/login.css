@@ -43,41 +43,30 @@
 /* =========================
    PAINEL ESQUERDO
    ========================= */
-
-/* Seção do Painel Azul (Esquerda) */
-.brand-panel,
-.login-left-panel {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  color: #fff;
-  background: linear-gradient(135deg, #0b2265 0%, #001238 100%);
-  width: 45%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px;
-  /* Recorte diagonal ajustado */
-  clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
-  z-index: 2;
+.brand-panel {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(circle at 47% 30%, rgba(35, 82, 153, .34), transparent 27%),
+        linear-gradient(125deg, #102a54 0%, #0b2147 38%, #07172f 100%);
+    clip-path: polygon(0 0, 100% 0, 71% 100%, 0 100%);
+    z-index: 2;
 }
 
-/* Linha / Borda Verde na Divisão Diagonal */
-.brand-panel::after,
-.login-left-panel::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 5px; /* Espessura da linha verde */
-  height: 100%;
-  background-color: #00b050; /* Cor verde da marca ValiPro */
-  transform-origin: top right;
-  /* Ajusta a inclinação exata acompanhando a diagonal */
-  transform: skewX(-10deg);
-  box-shadow: 0 0 10px rgba(0, 176, 80, 0.5); /* Efeito suave de brilho */
-  z-index: 3;
+.brand-panel::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 132%;
+    top: -8%;
+    right: 25.2%;
+    background: var(--login-green);
+    transform: rotate(13.2deg);
+    transform-origin: top center;
+    box-shadow: 0 0 12px rgba(35, 196, 102, .24);
+    z-index: 3;
 }
 
 .brand-panel-content {
