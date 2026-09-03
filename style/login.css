@@ -340,9 +340,15 @@
 .login-decoration span:nth-child(1) { top: 6%; right: 7%; width: 88px; height: 108px; background: rgba(128, 202, 204, .20); }
 .login-decoration span:nth-child(2) { top: 0; right: 18%; width: 68px; height: 68px; background: rgba(83, 144, 234, .30); }
 .login-decoration span:nth-child(3) { top: 10%; right: 28%; width: 28px; height: 28px; background: rgba(92, 193, 194, .28); }
-.login-decoration span:nth-child(4) { bottom: 8%; left: -19%; width: 128px; height: 128px; background: rgba(97, 160, 237, .22); }
-.login-decoration span:nth-child(5) { bottom: 2%; left: -8%; width: 38px; height: 38px; background: rgba(80, 143, 236, .25); }
-.login-decoration span:nth-child(6) { bottom: 6%; left: -2%; width: 22px; height: 22px; background: rgba(79, 191, 185, .26); }
+.login-decoration span:nth-child(4) { bottom: 3%; left: -28%; width: 164px; height: 164px; background: rgba(97, 160, 237, .18); }
+.login-decoration span:nth-child(5) { bottom: 10%; left: -22%; width: 78px; height: 78px; background: rgba(80, 143, 236, .24); }
+.login-decoration span:nth-child(6) { bottom: 7%; left: -13%; width: 106px; height: 106px; border: 1px solid rgba(88, 157, 232, .25); background: rgba(255, 255, 255, .10); }
+.login-decoration span:nth-child(7) { bottom: 3%; left: -15%; width: 50px; height: 50px; background: rgba(96, 154, 237, .22); }
+.login-decoration span:nth-child(8) { bottom: 7%; left: -8%; width: 21px; height: 21px; background: rgba(79, 191, 185, .30); }
+.login-decoration span:nth-child(9) { bottom: 3%; left: -5%; width: 31px; height: 31px; background: rgba(80, 143, 236, .28); }
+.login-decoration span:nth-child(10) { bottom: 8%; left: -5%; width: 14px; height: 14px; background: rgba(79, 191, 185, .34); }
+.login-decoration span:nth-child(11) { bottom: 15%; left: -18%; width: 23px; height: 23px; background: rgba(80, 143, 236, .25); }
+.login-decoration span:nth-child(12) { bottom: 11%; left: -11%; width: 18px; height: 18px; background: rgba(79, 191, 185, .24); }
 
 .login-header {
     display: flex;
