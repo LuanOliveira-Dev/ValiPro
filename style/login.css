@@ -753,10 +753,10 @@
         display: block;
         inset: auto 0 0;
         width: 100%;
-        height: 9px;
-        background: linear-gradient(90deg, #0ba870, #31c36c 55%, #17a879);
-        clip-path: polygon(0 55%, 100% 0, 100% 100%, 0 100%);
-        box-shadow: none;
+        height: 12px;
+        background: linear-gradient(90deg, #159ca0 0%, #16b76a 48%, #42c875 70%, #15a57d 100%);
+        clip-path: polygon(0 68%, 100% 0, 100% 100%, 0 100%);
+        box-shadow: 0 -1px 3px rgba(37, 196, 104, .18);
     }
 
     .brand-panel-content {
@@ -829,7 +829,54 @@
         border-radius: 4px;
     }
 
-    .floating-shape { display: none; }
+    /* Blocos sutis no alto à direita, presentes na arte de referência. */
+    .floating-shape {
+        display: block;
+        border: 1px solid rgba(75, 132, 214, .23);
+        border-radius: 5px;
+        background: rgba(55, 111, 193, .14);
+        box-shadow: none;
+    }
+
+    .shape-1 {
+        width: 37px;
+        height: 37px;
+        left: auto;
+        right: 78px;
+        top: -17px;
+        background: rgba(43, 102, 189, .06);
+    }
+
+    .shape-2 {
+        width: 45px;
+        height: 45px;
+        left: auto;
+        right: 57px;
+        top: -24px;
+        background: rgba(43, 102, 189, .06);
+    }
+
+    .shape-3 {
+        width: 18px;
+        height: 18px;
+        left: auto;
+        right: 31px;
+        top: 24px;
+        border: 0;
+        background: rgba(66, 122, 205, .20);
+    }
+
+    .shape-4 {
+        width: 19px;
+        height: 19px;
+        left: auto;
+        right: 5px;
+        top: 12px;
+        border: 0;
+        background: rgba(66, 122, 205, .17);
+    }
+
+    .shape-5 { display: none; }
 
     .login-side {
         display: block;
