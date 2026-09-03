@@ -292,24 +292,55 @@
    ÁREA DIREITA
    ========================= */
 .login-side {
+    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 38px 52px 38px 110px;
-    background: #f7f8fb;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: #f7faff;
+    background-image:
+        radial-gradient(circle, rgba(45, 121, 233, .48) 1px, transparent 1.3px),
+        radial-gradient(circle at 50% 40%, rgba(203, 225, 251, .68), transparent 46%);
+    background-size: 24px 24px, 100% 100%;
 }
 
 .login-card {
+    position: relative;
+    z-index: 1;
     width: min(100%, 666px);
     padding: 44px 58px 46px;
     border-radius: 21px;
-    /* Transparente para usar exatamente o mesmo fundo da área externa. */
-    background: transparent;
+    background: rgba(255, 255, 255, .86);
     border: 1px solid rgba(209, 218, 230, .94);
     box-shadow: 0 24px 58px rgba(57, 80, 119, .13);
-    backdrop-filter: none;
+    backdrop-filter: blur(12px);
 }
+
+.login-decoration {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.login-decoration span {
+    position: absolute;
+    display: block;
+    width: 76px;
+    height: 76px;
+    border-radius: 10px;
+    background: rgba(102, 164, 241, .24);
+}
+
+.login-decoration span:nth-child(1) { top: 6%; right: 7%; width: 88px; height: 108px; background: rgba(128, 202, 204, .20); }
+.login-decoration span:nth-child(2) { top: 0; right: 18%; width: 68px; height: 68px; background: rgba(83, 144, 234, .30); }
+.login-decoration span:nth-child(3) { top: 10%; right: 28%; width: 28px; height: 28px; background: rgba(92, 193, 194, .28); }
+.login-decoration span:nth-child(4) { bottom: 8%; left: -18px; width: 128px; height: 128px; background: rgba(97, 160, 237, .22); }
+.login-decoration span:nth-child(5) { bottom: 2%; left: 13%; width: 38px; height: 38px; background: rgba(80, 143, 236, .25); }
+.login-decoration span:nth-child(6) { bottom: 6%; left: 21%; width: 22px; height: 22px; background: rgba(79, 191, 185, .26); }
 
 .login-header {
     display: flex;
