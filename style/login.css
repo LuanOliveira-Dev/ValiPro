@@ -979,7 +979,7 @@
    e os controles fiquem apertados em telas de 320–520 px. */
 @media (max-width: 520px) {
     .brand-panel {
-        height: 245px;
+        height: 225px;
         clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
     }
 
@@ -988,47 +988,58 @@
     }
 
     .brand-panel-content {
-        padding: 55px 20px 0;
+        padding: 38px 20px 0;
     }
 
     .brand-top {
         justify-content: center;
+        align-items: center;
         gap: 9px;
+        flex-wrap: wrap;
     }
 
     .brand-symbol-image {
-        width: 78px;
-        height: 88px;
+        width: 62px;
+        height: 70px;
     }
 
     .brand-name {
-        font-size: 39px;
-        letter-spacing: -2.2px;
+        font-size: 34px;
+        letter-spacing: -2px;
     }
 
-    .brand-divider,
-    .brand-subtitle {
+    .brand-divider {
         display: none;
     }
 
+    .brand-subtitle {
+        display: block;
+        flex-basis: 100%;
+        margin-top: -2px;
+        text-align: center;
+        color: #e2e8f2;
+        font-size: 13px;
+        line-height: 1.25;
+    }
+
     .login-side {
-        padding: 27px 12px 38px;
+        padding: 24px 12px 32px;
     }
 
     .login-card {
-        padding: 27px 18px 31px;
+        padding: 23px 18px 24px;
         border-radius: 17px;
     }
 
     .login-header {
         gap: 14px;
-        padding-bottom: 20px;
-        margin-bottom: 28px;
+        padding-bottom: 17px;
+        margin-bottom: 23px;
     }
 
     .welcome-icon {
-        width: 65px;
-        height: 65px;
+        width: 61px;
+        height: 61px;
     }
 
     .welcome-icon svg {
@@ -1046,7 +1057,7 @@
     }
 
     .input-group {
-        margin-bottom: 22px;
+        margin-bottom: 18px;
     }
 
     .input-group label {
@@ -1077,7 +1088,7 @@
     .form-actions {
         flex-direction: row;
         align-items: center;
-        margin-bottom: 26px;
+        margin-bottom: 21px;
         font-size: 13px;
         gap: 8px;
     }
@@ -1111,8 +1122,8 @@
     .login-footer {
         gap: 12px;
         justify-content: flex-start;
-        margin-top: 27px;
-        padding-top: 27px;
+        margin-top: 20px;
+        padding-top: 20px;
     }
 
     .footer-shield {
