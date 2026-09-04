@@ -1093,11 +1093,26 @@
     .brand-visual .shape-4 { right: 17%; top: 120px; }
     .brand-visual .shape-5 { right: 3%; top: 105px; }
 
+    /* Totem de login centralizado na área disponível abaixo do cabeçalho. */
     .login-side {
-        padding: 24px 12px 32px;
+        position: absolute;
+        top: 190px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 0;
+        padding: 16px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
     }
 
     .login-card {
+        width: 100%;
+        max-width: 430px;
+        margin: 0 auto;
         padding: 23px 18px 24px;
         border-radius: 17px;
     }
