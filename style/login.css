@@ -1237,14 +1237,14 @@
 
     /* Cabeçalho um pouco mais baixo e com espaço para a marca respirar. */
     .brand-panel {
-        height: 218px;
-        min-height: 218px;
+        height: 190px;
+        min-height: 190px;
     }
 
     .brand-panel-content {
-        height: 218px;
-        min-height: 218px;
-        padding: 50px 16px 0;
+        height: 190px;
+        min-height: 190px;
+        padding: 42px 16px 0;
         overflow: hidden;
     }
 
@@ -1287,7 +1287,7 @@
 
     .brand-visual .large-check {
         right: -112px;
-        top: 34px;
+        top: 25px;
         width: 205px;
         height: 205px;
     }
@@ -1315,7 +1315,7 @@
 
     /* O card ocupa o espaço restante da tela sem criar página rolável. */
     .login-side {
-        height: calc(100% - 218px);
+        height: calc(100% - 190px);
         min-height: 0;
         padding: 20px 12px 12px;
         overflow: hidden;
