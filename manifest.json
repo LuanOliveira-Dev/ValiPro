@@ -4,8 +4,8 @@
   "description": "Sistema de controle de validade e estoque na nuvem",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "background_color": "#f4f7fc",
+  "theme_color": "#0b234a",
   "orientation": "portrait",
   "icons": [
     {
