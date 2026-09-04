@@ -811,12 +811,48 @@
         white-space: normal;
     }
 
-    /* No Android a área institucional vira apenas o cabeçalho. */
-    .brand-visual,
+    /* No Android a área institucional vira apenas o cabeçalho.
+       Mantemos apenas os efeitos decorativos da arte de referência. */
     .brand-message,
     .brand-benefits {
         display: none !important;
     }
+
+    .brand-visual {
+        display: block !important;
+        opacity: .72;
+    }
+
+    .brand-visual .large-check {
+        left: auto;
+        right: -82px;
+        top: 42px;
+        width: 235px;
+        height: 235px;
+        opacity: .72;
+    }
+
+    .brand-visual .large-check-circle {
+        width: 205px;
+        height: 205px;
+        border-width: 22px;
+        border-left-color: transparent;
+    }
+
+    .brand-visual .large-check-mark {
+        left: 31px;
+        top: 73px;
+        width: 112px;
+        height: 64px;
+        border-left-width: 22px;
+        border-bottom-width: 22px;
+    }
+
+    .brand-visual .shape-1 { width: 70px; height: 70px; left: auto; right: 16%; top: 18px; }
+    .brand-visual .shape-2 { width: 92px; height: 92px; left: auto; right: 1%; top: -20px; }
+    .brand-visual .shape-3 { width: 55px; height: 55px; left: auto; right: 27%; top: 88px; }
+    .brand-visual .shape-4 { width: 68px; height: 68px; left: auto; right: 13%; top: 112px; }
+    .brand-visual .shape-5 { width: 50px; height: 50px; left: auto; right: 4%; top: 100px; }
 
     /* Área do formulário */
     .login-side {
@@ -987,40 +1023,75 @@
         clip-path: polygon(0 97.8%, 100% 78.0%, 100% 80.2%, 0 100%);
     }
 
-    .brand-panel-content {
-        padding: 38px 20px 0;
+    .brand-panel {
+        height: 245px;
+        clip-path: polygon(0 0, 100% 0, 100% 79%, 0 100%);
     }
 
+    .brand-panel::after {
+        clip-path: polygon(0 97.5%, 100% 77.2%, 100% 79.3%, 0 99.7%);
+    }
+
+    .brand-panel-content {
+        padding: 42px 18px 0;
+    }
+
+    /* No celular o cabeçalho segue a mesma composição horizontal da referência: 
+       calendário + ValiPro + divisor + slogan. */
     .brand-top {
         justify-content: center;
         align-items: center;
-        gap: 9px;
-        flex-wrap: wrap;
+        gap: 7px;
+        flex-wrap: nowrap;
+        position: relative;
+        z-index: 8;
     }
 
     .brand-symbol-image {
-        width: 62px;
-        height: 70px;
+        width: 48px;
+        height: 56px;
     }
 
     .brand-name {
-        font-size: 34px;
-        letter-spacing: -2px;
+        font-size: 31px;
+        letter-spacing: -1.8px;
     }
 
     .brand-divider {
-        display: none;
+        display: block;
+        width: 1px;
+        height: 38px;
+        margin: 0 3px;
+        background: rgba(218, 228, 241, .42);
     }
 
     .brand-subtitle {
         display: block;
-        flex-basis: 100%;
-        margin-top: -2px;
-        text-align: center;
+        flex: 0 1 auto;
+        margin: 0;
+        text-align: left;
         color: #e2e8f2;
-        font-size: 13px;
-        line-height: 1.25;
+        font-size: 11px;
+        line-height: 1.28;
+        white-space: nowrap;
     }
+
+    .brand-visual {
+        opacity: .62;
+    }
+
+    .brand-visual .large-check {
+        right: -95px;
+        top: 38px;
+        width: 220px;
+        height: 220px;
+    }
+
+    .brand-visual .shape-1 { right: 20%; top: 18px; }
+    .brand-visual .shape-2 { right: -4%; top: -24px; }
+    .brand-visual .shape-3 { right: 32%; top: 92px; }
+    .brand-visual .shape-4 { right: 17%; top: 120px; }
+    .brand-visual .shape-5 { right: 3%; top: 105px; }
 
     .login-side {
         padding: 24px 12px 32px;
