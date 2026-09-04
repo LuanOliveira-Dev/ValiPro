@@ -713,243 +713,418 @@
     }
 }
 
-/* =========================
-   LOGIN MOBILE / ANDROID
-   O cabeçalho e o formulário formam uma única composição, como no app.
-   ========================= */
-@media (max-width: 640px) {
-    .login-page {
-        min-height: 100svh;
-        background: #f5f8fd;
+
+/* =========================================================
+   LOGIN ANDROID / MOBILE — LAYOUT BASEADO NO MOCKUP
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    html,
+    body.login-page {
+        width: 100%;
+        min-width: 320px;
+        min-height: 100%;
+        margin: 0;
+        padding: 0 !important;
+        background: #f4f7fc;
+        overflow-x: hidden;
     }
 
     .login-container {
         display: block;
+        width: 100%;
         min-height: 100svh;
-        overflow: hidden;
+        overflow: visible;
         background:
-            radial-gradient(circle at 84% 82%, rgba(188, 215, 249, .52), transparent 25%),
-            linear-gradient(180deg, #f5f8fd 0%, #edf3fb 100%);
+            radial-gradient(circle at 50% 20%, rgba(203, 225, 251, .60), transparent 42%),
+            #f4f7fc;
     }
 
-    .corner-decoration,
-    .login-decoration,
-    .brand-message,
-    .brand-benefits {
+    .corner-decoration {
         display: none;
     }
 
+    /* Cabeçalho azul */
     .brand-panel {
-        min-height: 166px;
-        height: 166px;
-        overflow: visible;
-        clip-path: polygon(0 0, 100% 0, 100% 81%, 0 100%);
+        width: 100%;
+        height: clamp(245px, 34.2vw, 350px);
+        min-height: 0;
+        overflow: hidden;
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
         background:
-            radial-gradient(circle at 30% 32%, rgba(36, 88, 171, .35), transparent 42%),
-            linear-gradient(115deg, #092859 0%, #09245a 55%, #123c80 100%);
+            radial-gradient(circle at 50% 30%, rgba(35, 82, 153, .34), transparent 30%),
+            linear-gradient(125deg, #102a54 0%, #0b2147 38%, #07172f 100%);
     }
 
     .brand-panel::after {
         display: block;
-        inset: auto 0 0;
-        width: 100%;
-        height: 12px;
-        background: linear-gradient(90deg, #159ca0 0%, #16b76a 48%, #42c875 70%, #15a57d 100%);
-        clip-path: polygon(0 68%, 100% 0, 100% 100%, 0 100%);
-        box-shadow: 0 -1px 3px rgba(37, 196, 104, .18);
+        inset: 0;
+        background: var(--login-green);
+        clip-path: polygon(0 98.0%, 100% 78.0%, 100% 80.0%, 0 100%);
+        box-shadow: 0 0 12px rgba(35, 196, 102, .28);
     }
 
     .brand-panel-content {
+        width: 100%;
+        height: 100%;
         min-height: 0;
-        height: 166px;
-        padding: 31px 25px 0;
+        padding: clamp(58px, 10.7vw, 110px) clamp(20px, 6.05vw, 62px) 0;
+        transform: none !important;
     }
 
     .brand-top {
-        gap: 7px;
+        width: 100%;
+        display: flex;
         align-items: center;
+        gap: clamp(10px, 1.8vw, 18px);
+        white-space: nowrap;
+    }
+
+    .brand-symbol {
+        flex: 0 0 auto;
     }
 
     .brand-symbol-image {
-        width: 58px;
-        height: 58px;
-        margin: 0;
-        transform: none;
-        clip-path: inset(0 0 6% 0);
+        width: clamp(74px, 12.9vw, 132px);
+        height: clamp(82px, 14.1vw, 145px);
+        object-fit: contain;
     }
 
     .brand-name {
-        font-size: 34px;
-        letter-spacing: -2.2px;
+        flex: 0 0 auto;
+        font-size: clamp(38px, 5.25vw, 54px);
+        letter-spacing: clamp(-2.2px, -.27vw, -2.8px);
     }
 
     .brand-divider {
-        display: block;
+        flex: 0 0 1px;
         width: 1px;
-        height: 35px;
-        margin: 0 7px;
-        background: rgba(224, 235, 250, .42);
+        height: clamp(44px, 6.4vw, 66px);
+        margin: 0 clamp(4px, 1vw, 10px);
+        display: block;
     }
 
     .brand-subtitle {
-        display: block;
-        font-size: 11px;
-        line-height: 1.25;
-        color: #edf4ff;
-        letter-spacing: 0;
+        min-width: 0;
+        font-size: clamp(15px, 2.35vw, 25px);
+        line-height: 1.3;
+        white-space: normal;
     }
 
-    .brand-visual {
-        display: block;
-        opacity: .55;
-        overflow: hidden;
+    /* No Android a área institucional vira apenas o cabeçalho. */
+    .brand-visual,
+    .brand-message,
+    .brand-benefits {
+        display: none !important;
     }
 
-    .large-check {
-        left: auto;
-        right: -52px;
-        top: 35px;
-        width: 110px;
-        height: 110px;
-        opacity: .6;
-    }
-
-    .large-check-circle {
-        width: 96px;
-        height: 96px;
-        border-width: 10px;
-    }
-
-    .large-check-mark {
-        left: 16px;
-        top: 34px;
-        width: 52px;
-        height: 30px;
-        border-width: 10px;
-        border-radius: 4px;
-    }
-
-    /* Blocos sutis no alto à direita, presentes na arte de referência. */
-    .floating-shape {
-        display: block;
-        border: 1px solid rgba(75, 132, 214, .23);
-        border-radius: 5px;
-        background: rgba(55, 111, 193, .14);
-        box-shadow: none;
-    }
-
-    .shape-1 {
-        width: 37px;
-        height: 37px;
-        left: auto;
-        right: 78px;
-        top: -17px;
-        background: rgba(43, 102, 189, .06);
-    }
-
-    .shape-2 {
-        width: 45px;
-        height: 45px;
-        left: auto;
-        right: 57px;
-        top: -24px;
-        background: rgba(43, 102, 189, .06);
-    }
-
-    .shape-3 {
-        width: 18px;
-        height: 18px;
-        left: auto;
-        right: 31px;
-        top: 24px;
-        border: 0;
-        background: rgba(66, 122, 205, .20);
-    }
-
-    .shape-4 {
-        width: 19px;
-        height: 19px;
-        left: auto;
-        right: 5px;
-        top: 12px;
-        border: 0;
-        background: rgba(66, 122, 205, .17);
-    }
-
-    .shape-5 { display: none; }
-
+    /* Área do formulário */
     .login-side {
-        display: block;
-        min-height: calc(100svh - 166px);
-        padding: 19px 10.5% 34px;
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: clamp(32px, 3.2vw, 34px) clamp(14px, 8.2vw, 84px) 55px;
         overflow: visible;
         background: transparent;
     }
 
+    .login-decoration {
+        display: none;
+    }
+
     .login-card {
         width: 100%;
-        max-width: 390px;
+        max-width: 850px;
         margin: 0 auto;
-        padding: 26px 18px 22px;
-        border: 0;
-        border-radius: 18px;
+        padding: clamp(30px, 4.5vw, 46px) clamp(20px, 4.7vw, 48px) clamp(34px, 4.5vw, 46px);
+        border-radius: 22px;
         background: rgba(255, 255, 255, .96);
-        box-shadow: 0 13px 30px rgba(43, 72, 117, .12);
+        border: 1px solid rgba(216, 224, 235, .95);
+        box-shadow: 0 18px 42px rgba(57, 80, 119, .12);
         backdrop-filter: none;
+        transform: none !important;
+    }
+
+    .login-header {
+        gap: clamp(16px, 2.4vw, 24px);
+        padding-bottom: clamp(24px, 3.2vw, 33px);
+        margin-bottom: clamp(35px, 4.3vw, 45px);
+    }
+
+    .welcome-icon {
+        width: clamp(66px, 11.4vw, 116px);
+        height: clamp(66px, 11.4vw, 116px);
+    }
+
+    .welcome-icon svg {
+        width: clamp(32px, 4.1vw, 42px);
+        height: clamp(32px, 4.1vw, 42px);
+    }
+
+    .login-header h1 {
+        margin-bottom: 8px;
+        font-size: clamp(22px, 2.95vw, 30px);
+    }
+
+    .login-header p {
+        font-size: clamp(14px, 1.75vw, 19px);
+        line-height: 1.4;
+    }
+
+    .alert {
+        margin: -18px 0 24px;
+    }
+
+    .input-group {
+        margin-bottom: clamp(27px, 3.6vw, 39px);
+    }
+
+    .input-group label {
+        margin-bottom: 13px;
+        font-size: clamp(16px, 2.25vw, 26px);
+    }
+
+    .input-wrapper {
+        height: clamp(64px, 10.2vw, 105px);
+        border-radius: 13px;
+        background: rgba(255,255,255,.62);
+    }
+
+    .input-wrapper input {
+        padding: 0 clamp(54px, 7vw, 67px);
+        font-size: clamp(15px, 1.75vw, 19px);
+    }
+
+    .input-icon {
+        left: clamp(15px, 2.5vw, 28px);
+    }
+
+    .input-icon svg {
+        width: clamp(23px, 3.1vw, 31px);
+        height: clamp(23px, 3.1vw, 31px);
+    }
+
+    .toggle-password {
+        right: clamp(13px, 2vw, 20px);
+        width: 38px;
+        height: 38px;
+    }
+
+    .toggle-password svg {
+        width: clamp(25px, 3.1vw, 31px);
+        height: clamp(25px, 3.1vw, 31px);
+    }
+
+    .form-actions {
+        margin: 0 0 clamp(28px, 3.4vw, 34px);
+        gap: 16px;
+        font-size: clamp(14px, 1.65vw, 18px);
+    }
+
+    .remember-me {
+        gap: 12px;
+    }
+
+    .remember-me input {
+        width: clamp(24px, 3.2vw, 33px);
+        height: clamp(24px, 3.2vw, 33px);
+    }
+
+    .forgot-password {
+        font-size: inherit;
+    }
+
+    .btn-primary {
+        min-height: clamp(62px, 9.2vw, 95px);
+        border-radius: 11px;
+        padding: 14px 58px;
+        font-size: clamp(17px, 2.25vw, 23px);
+    }
+
+    .button-arrow {
+        right: clamp(20px, 3.2vw, 28px);
+        width: clamp(27px, 3.2vw, 32px);
+        height: clamp(27px, 3.2vw, 32px);
+    }
+
+    .login-footer {
+        gap: clamp(14px, 2.3vw, 22px);
+        margin-top: clamp(30px, 3.8vw, 40px);
+        padding-top: clamp(28px, 3.8vw, 40px);
+    }
+
+    .footer-shield {
+        width: clamp(56px, 6.6vw, 68px);
+        height: clamp(56px, 6.6vw, 68px);
+    }
+
+    .footer-shield svg {
+        width: clamp(29px, 3vw, 32px);
+        height: clamp(29px, 3vw, 32px);
+    }
+
+    .login-footer p {
+        margin-bottom: 7px;
+        font-size: clamp(14px, 1.65vw, 18px);
+    }
+
+    .login-footer a {
+        font-size: clamp(15px, 1.8vw, 19px);
+    }
+}
+
+/* Smartphones: mantém a mesma identidade, mas evita que o cabeçalho
+   e os controles fiquem apertados em telas de 320–520 px. */
+@media (max-width: 520px) {
+    .brand-panel {
+        height: 245px;
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    }
+
+    .brand-panel::after {
+        clip-path: polygon(0 97.8%, 100% 78.0%, 100% 80.2%, 0 100%);
+    }
+
+    .brand-panel-content {
+        padding: 55px 20px 0;
+    }
+
+    .brand-top {
+        justify-content: center;
+        gap: 9px;
+    }
+
+    .brand-symbol-image {
+        width: 78px;
+        height: 88px;
+    }
+
+    .brand-name {
+        font-size: 39px;
+        letter-spacing: -2.2px;
+    }
+
+    .brand-divider,
+    .brand-subtitle {
+        display: none;
+    }
+
+    .login-side {
+        padding: 27px 12px 38px;
+    }
+
+    .login-card {
+        padding: 27px 18px 31px;
+        border-radius: 17px;
     }
 
     .login-header {
         gap: 14px;
-        margin-bottom: 22px;
-        padding-bottom: 19px;
-        border-bottom-color: #dce4ef;
+        padding-bottom: 20px;
+        margin-bottom: 28px;
     }
 
     .welcome-icon {
-        width: 57px;
-        height: 57px;
-        color: #1554c3;
-        background: linear-gradient(145deg, #edf1f8, #e5ebf4);
+        width: 65px;
+        height: 65px;
     }
 
-    .welcome-icon svg { width: 29px; height: 29px; }
-    .login-header h1 { margin-bottom: 4px; font-size: 19px; letter-spacing: -.35px; }
-    .login-header p { font-size: 12.5px; color: #52647f; }
+    .welcome-icon svg {
+        width: 31px;
+        height: 31px;
+    }
 
-    .input-group { margin-bottom: 19px; }
-    .input-group label { margin-bottom: 8px; font-size: 15px; color: #172945; }
-    .input-wrapper { height: 53px; border-radius: 9px; border-color: #b9cbe8; }
-    .input-icon { left: 13px; }
-    .input-icon svg { width: 22px; height: 22px; }
-    .input-wrapper input { padding: 0 48px 0 48px; font-size: 14px; }
-    .toggle-password { right: 10px; width: 31px; height: 31px; }
-    .toggle-password svg { width: 22px; height: 22px; }
+    .login-header h1 {
+        font-size: 21px;
+        margin-bottom: 5px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    .input-group {
+        margin-bottom: 22px;
+    }
+
+    .input-group label {
+        margin-bottom: 9px;
+        font-size: 16px;
+    }
+
+    .input-wrapper {
+        height: 63px;
+        border-radius: 11px;
+    }
+
+    .input-wrapper input {
+        padding-left: 55px;
+        padding-right: 50px;
+        font-size: 15px;
+    }
+
+    .input-icon {
+        left: 14px;
+    }
+
+    .input-icon svg {
+        width: 23px;
+        height: 23px;
+    }
 
     .form-actions {
         flex-direction: row;
         align-items: center;
-        gap: 10px;
-        margin: 2px 0 20px;
-        font-size: 12.5px;
+        margin-bottom: 26px;
+        font-size: 13px;
+        gap: 8px;
     }
 
-    .remember-me { gap: 8px; white-space: nowrap; }
-    .remember-me input { width: 17px; height: 17px; }
-    .forgot-password { font-size: 12.5px; text-align: right; }
+    .remember-me {
+        gap: 8px;
+        white-space: nowrap;
+    }
 
-    .btn-primary { min-height: 51px; padding: 10px 45px; border-radius: 8px; font-size: 16px; }
-    .button-arrow { right: 17px; width: 23px; height: 23px; }
+    .remember-me input {
+        width: 22px;
+        height: 22px;
+    }
+
+    .forgot-password {
+        font-size: 13px;
+    }
+
+    .btn-primary {
+        min-height: 61px;
+        font-size: 17px;
+        padding: 12px 48px 12px 18px;
+    }
+
+    .button-arrow {
+        right: 17px;
+        width: 27px;
+        height: 27px;
+    }
 
     .login-footer {
-        gap: 13px;
-        justify-content: center;
-        margin-top: 20px;
-        padding-top: 18px;
+        gap: 12px;
+        justify-content: flex-start;
+        margin-top: 27px;
+        padding-top: 27px;
     }
 
-    .footer-shield { width: 48px; height: 48px; }
-    .footer-shield svg { width: 24px; height: 24px; }
-    .login-footer p { margin-bottom: 3px; font-size: 12.5px; }
-    .login-footer a { font-size: 14px; }
-    .login-footer a span { margin-left: 4px; font-size: 22px; }
+    .footer-shield {
+        width: 55px;
+        height: 55px;
+    }
+
+    .login-footer p {
+        font-size: 13px;
+    }
+
+    .login-footer a {
+        font-size: 15px;
+    }
 }
