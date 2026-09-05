@@ -715,7 +715,7 @@
 
 
 /* =========================================================
-   LOGIN ANDROID / MOBILE — LAYOUT BASEADO NO MOCKUP
+   LOGIN ANDROID / MOBILE — TOPO IGUAL AO MOCKUP DE REFERÊNCIA
    ========================================================= */
 
 @media (max-width: 1100px) {
@@ -746,35 +746,36 @@
         background-repeat: repeat, no-repeat, no-repeat;
     }
 
-    .corner-decoration {
-        display: none;
-    }
+    .corner-decoration { display: none; }
 
-    /* Cabeçalho azul */
+    /* =====================================================
+       TOPO ANDROID — proporções e composição da 2ª referência
+       ===================================================== */
     .brand-panel {
         width: 100%;
-        height: clamp(245px, 34.2vw, 350px);
+        height: clamp(175px, 39vw, 205px);
         min-height: 0;
         overflow: hidden;
-        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
         background:
-            radial-gradient(circle at 50% 30%, rgba(35, 82, 153, .34), transparent 30%),
-            linear-gradient(125deg, #102a54 0%, #0b2147 38%, #07172f 100%);
+            radial-gradient(circle at 58% 28%, rgba(28, 88, 184, .38), transparent 42%),
+            linear-gradient(115deg, #08245b 0%, #0b3b91 52%, #0752bd 100%);
     }
 
+    /* Faixa verde fina e inclinada, igual à referência */
     .brand-panel::after {
         display: block;
         inset: 0;
         background: var(--login-green);
-        clip-path: polygon(0 98.0%, 100% 78.0%, 100% 80.0%, 0 100%);
-        box-shadow: 0 0 12px rgba(35, 196, 102, .28);
+        clip-path: polygon(0 98.0%, 100% 76.0%, 100% 79.0%, 0 100%);
+        box-shadow: 0 0 9px rgba(35, 196, 102, .28);
     }
 
     .brand-panel-content {
         width: 100%;
         height: 100%;
         min-height: 0;
-        padding: clamp(58px, 10.7vw, 110px) clamp(20px, 6.05vw, 62px) 0;
+        padding: clamp(48px, 11.5vw, 58px) clamp(22px, 10.5vw, 43px) 0;
         transform: none !important;
     }
 
@@ -782,99 +783,130 @@
         width: 100%;
         display: flex;
         align-items: center;
-        gap: clamp(10px, 1.8vw, 18px);
+        gap: clamp(8px, 2.4vw, 12px);
         white-space: nowrap;
+        position: relative;
+        z-index: 5;
     }
 
+    /* Calendário da marca */
     .brand-symbol {
         flex: 0 0 auto;
+        width: 56px;
+        height: 55px;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .brand-symbol-image {
-        width: clamp(74px, 12.9vw, 132px);
-        height: clamp(82px, 14.1vw, 145px);
+        width: 58px;
+        height: 64px;
         object-fit: contain;
+        clip-path: none;
     }
 
+    /* ValiPro maior, como na segunda imagem */
     .brand-name {
         flex: 0 0 auto;
-        font-size: clamp(38px, 5.25vw, 54px);
-        letter-spacing: clamp(-2.2px, -.27vw, -2.8px);
+        font-size: clamp(39px, 9.4vw, 44px);
+        letter-spacing: -2.3px;
+        line-height: 1;
     }
 
     .brand-divider {
         flex: 0 0 1px;
         width: 1px;
-        height: clamp(44px, 6.4vw, 66px);
-        margin: 0 clamp(4px, 1vw, 10px);
+        height: 43px;
+        margin: 0 4px 0 7px;
         display: block;
+        background: rgba(218, 228, 241, .45);
     }
 
     .brand-subtitle {
         min-width: 0;
-        font-size: clamp(15px, 2.35vw, 25px);
-        line-height: 1.3;
+        color: #eef4ff;
+        font-size: clamp(11px, 2.7vw, 13px);
+        font-weight: 400;
+        line-height: 1.28;
         white-space: normal;
     }
 
-    /* No Android a área institucional vira apenas o cabeçalho.
-       Mantemos apenas os efeitos decorativos da arte de referência. */
     .brand-message,
-    .brand-benefits {
-        display: none !important;
-    }
+    .brand-benefits { display: none !important; }
 
+    /* Círculo/check no canto superior direito */
     .brand-visual {
         display: block !important;
-        opacity: .72;
+        opacity: 1;
+        z-index: 2;
     }
 
     .brand-visual .large-check {
         left: auto;
-        right: -82px;
+        right: -57px;
         top: 42px;
-        width: 235px;
-        height: 235px;
-        opacity: .72;
+        width: 126px;
+        height: 126px;
+        opacity: .48;
     }
 
     .brand-visual .large-check-circle {
-        width: 205px;
-        height: 205px;
-        border-width: 22px;
-        border-left-color: transparent;
+        width: 120px;
+        height: 120px;
+        border-width: 9px;
+        border-left-color: #2e72d1;
     }
 
     .brand-visual .large-check-mark {
-        left: 31px;
-        top: 73px;
-        width: 112px;
-        height: 64px;
-        border-left-width: 22px;
-        border-bottom-width: 22px;
+        left: 26px;
+        top: 44px;
+        width: 63px;
+        height: 38px;
+        border-left-width: 9px;
+        border-bottom-width: 9px;
+        border-radius: 4px;
     }
 
-    .brand-visual .shape-1 { width: 70px; height: 70px; left: auto; right: 16%; top: 18px; }
-    .brand-visual .shape-2 { width: 92px; height: 92px; left: auto; right: 1%; top: -20px; }
-    .brand-visual .shape-3 { width: 55px; height: 55px; left: auto; right: 27%; top: 88px; }
-    .brand-visual .shape-4 { width: 68px; height: 68px; left: auto; right: 13%; top: 112px; }
-    .brand-visual .shape-5 { width: 50px; height: 50px; left: auto; right: 4%; top: 100px; }
+    /* Quadrados sutis no topo, como na referência */
+    .brand-visual .shape-1 {
+        width: 34px; height: 34px;
+        left: auto; right: 18%; top: 5px;
+        border-width: 1px;
+        border-radius: 7px;
+    }
+    .brand-visual .shape-2 {
+        width: 43px; height: 43px;
+        left: auto; right: 7%; top: -10px;
+        border-width: 1px;
+        border-radius: 8px;
+    }
+    .brand-visual .shape-3 {
+        width: 23px; height: 23px;
+        left: auto; right: 28%; top: 48px;
+        border-width: 0;
+        background: rgba(55, 137, 230, .18);
+    }
+    .brand-visual .shape-4,
+    .brand-visual .shape-5 {
+        display: none;
+    }
 
-    /* Área do formulário */
+    /* =====================================================
+       ÁREA DO LOGIN
+       ===================================================== */
     .login-side {
         width: 100%;
         min-height: auto;
         display: flex;
         align-items: flex-start;
         justify-content: center;
-        padding: clamp(32px, 3.2vw, 34px) clamp(14px, 8.2vw, 84px) 55px;
+        padding: clamp(32px, 6vw, 38px) clamp(14px, 6vw, 28px) 55px;
         overflow: visible;
         background: transparent;
     }
 
-    .login-decoration {
-        display: none;
-    }
+    .login-decoration { display: none; }
 
     .login-card {
         width: 100%;
@@ -915,13 +947,9 @@
         line-height: 1.4;
     }
 
-    .alert {
-        margin: -18px 0 24px;
-    }
+    .alert { margin: -18px 0 24px; }
 
-    .input-group {
-        margin-bottom: clamp(27px, 3.6vw, 39px);
-    }
+    .input-group { margin-bottom: clamp(27px, 3.6vw, 39px); }
 
     .input-group label {
         margin-bottom: 13px;
@@ -939,9 +967,7 @@
         font-size: clamp(15px, 1.75vw, 19px);
     }
 
-    .input-icon {
-        left: clamp(15px, 2.5vw, 28px);
-    }
+    .input-icon { left: clamp(15px, 2.5vw, 28px); }
 
     .input-icon svg {
         width: clamp(23px, 3.1vw, 31px);
@@ -965,655 +991,12 @@
         font-size: clamp(14px, 1.65vw, 18px);
     }
 
-    .remember-me {
-        gap: 12px;
-    }
+    .remember-me { gap: 12px; }
 
     .remember-me input {
         width: clamp(24px, 3.2vw, 33px);
         height: clamp(24px, 3.2vw, 33px);
     }
 
-    .forgot-password {
-        font-size: inherit;
-    }
-
-    .btn-primary {
-        min-height: clamp(62px, 9.2vw, 95px);
-        border-radius: 11px;
-        padding: 14px 58px;
-        font-size: clamp(17px, 2.25vw, 23px);
-    }
-
-    .button-arrow {
-        right: clamp(20px, 3.2vw, 28px);
-        width: clamp(27px, 3.2vw, 32px);
-        height: clamp(27px, 3.2vw, 32px);
-    }
-
-    .login-footer {
-        gap: clamp(14px, 2.3vw, 22px);
-        margin-top: clamp(30px, 3.8vw, 40px);
-        padding-top: clamp(28px, 3.8vw, 40px);
-    }
-
-    .footer-shield {
-        width: clamp(56px, 6.6vw, 68px);
-        height: clamp(56px, 6.6vw, 68px);
-    }
-
-    .footer-shield svg {
-        width: clamp(29px, 3vw, 32px);
-        height: clamp(29px, 3vw, 32px);
-    }
-
-    .login-footer p {
-        margin-bottom: 7px;
-        font-size: clamp(14px, 1.65vw, 18px);
-    }
-
-    .login-footer a {
-        font-size: clamp(15px, 1.8vw, 19px);
-    }
-}
-
-/* Smartphones: mantém a mesma identidade, mas evita que o cabeçalho
-   e os controles fiquem apertados em telas de 320–520 px. */
-@media (max-width: 520px) {
-    .brand-panel {
-        height: 225px;
-        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-    }
-
-    .brand-panel::after {
-        clip-path: polygon(0 97.8%, 100% 78.0%, 100% 80.2%, 0 100%);
-    }
-
-    .brand-panel {
-        height: 245px;
-        clip-path: polygon(0 0, 100% 0, 100% 79%, 0 100%);
-    }
-
-    .brand-panel::after {
-        clip-path: polygon(0 97.5%, 100% 77.2%, 100% 79.3%, 0 99.7%);
-    }
-
-    .brand-panel-content {
-        padding: 42px 18px 0;
-    }
-
-    /* No celular o cabeçalho segue a mesma composição horizontal da referência: 
-       calendário + ValiPro + divisor + slogan. */
-    .brand-top {
-        justify-content: center;
-        align-items: center;
-        gap: 7px;
-        flex-wrap: nowrap;
-        position: relative;
-        z-index: 8;
-    }
-
-    .brand-symbol-image {
-        width: 48px;
-        height: 56px;
-    }
-
-    .brand-name {
-        font-size: 31px;
-        letter-spacing: -1.8px;
-    }
-
-    .brand-divider {
-        display: block;
-        width: 1px;
-        height: 38px;
-        margin: 0 3px;
-        background: rgba(218, 228, 241, .42);
-    }
-
-    .brand-subtitle {
-        display: block;
-        flex: 0 1 auto;
-        margin: 0;
-        text-align: left;
-        color: #e2e8f2;
-        font-size: 11px;
-        line-height: 1.28;
-        white-space: nowrap;
-    }
-
-    .brand-visual {
-        opacity: .62;
-    }
-
-    .brand-visual .large-check {
-        right: -95px;
-        top: 38px;
-        width: 220px;
-        height: 220px;
-    }
-
-    .brand-visual .shape-1 { right: 20%; top: 18px; }
-    .brand-visual .shape-2 { right: -4%; top: -24px; }
-    .brand-visual .shape-3 { right: 32%; top: 92px; }
-    .brand-visual .shape-4 { right: 17%; top: 120px; }
-    .brand-visual .shape-5 { right: 3%; top: 105px; }
-
-    /* Totem de login centralizado na área disponível abaixo do cabeçalho. */
-    .login-side {
-        position: absolute;
-        top: 190px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        min-height: 0;
-        padding: 16px 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .login-card {
-        width: 100%;
-        max-width: 430px;
-        margin: 0 auto;
-        padding: 23px 18px 24px;
-        border-radius: 17px;
-    }
-
-    .login-header {
-        gap: 14px;
-        padding-bottom: 17px;
-        margin-bottom: 23px;
-    }
-
-    .welcome-icon {
-        width: 61px;
-        height: 61px;
-    }
-
-    .welcome-icon svg {
-        width: 31px;
-        height: 31px;
-    }
-
-    .login-header h1 {
-        font-size: 21px;
-        margin-bottom: 5px;
-    }
-
-    .login-header p {
-        font-size: 13px;
-    }
-
-    .input-group {
-        margin-bottom: 18px;
-    }
-
-    .input-group label {
-        margin-bottom: 9px;
-        font-size: 16px;
-    }
-
-    .input-wrapper {
-        height: 63px;
-        border-radius: 11px;
-    }
-
-    .input-wrapper input {
-        padding-left: 55px;
-        padding-right: 50px;
-        font-size: 15px;
-    }
-
-    .input-icon {
-        left: 14px;
-    }
-
-    .input-icon svg {
-        width: 23px;
-        height: 23px;
-    }
-
-    .form-actions {
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 21px;
-        font-size: 13px;
-        gap: 8px;
-    }
-
-    .remember-me {
-        gap: 8px;
-        white-space: nowrap;
-    }
-
-    .remember-me input {
-        width: 22px;
-        height: 22px;
-    }
-
-    .forgot-password {
-        font-size: 13px;
-    }
-
-    .btn-primary {
-        min-height: 61px;
-        font-size: 17px;
-        padding: 12px 48px 12px 18px;
-    }
-
-    .button-arrow {
-        right: 17px;
-        width: 27px;
-        height: 27px;
-    }
-
-    .login-footer {
-        gap: 12px;
-        justify-content: flex-start;
-        margin-top: 20px;
-        padding-top: 20px;
-    }
-
-    .footer-shield {
-        width: 55px;
-        height: 55px;
-    }
-
-    .login-footer p {
-        font-size: 13px;
-    }
-
-    .login-footer a {
-        font-size: 15px;
-    }
-}
-
-
-/* =========================================================
-   AJUSTE FINAL ANDROID — CABEÇALHO + SEM ROLAGEM
-   ========================================================= */
-@media (max-width: 520px) {
-    html,
-    body.login-page {
-        width: 100%;
-        height: 100dvh;
-        min-height: 100dvh;
-        overflow: hidden !important;
-        overscroll-behavior: none;
-        position: fixed;
-        inset: 0;
-    }
-
-    .login-container {
-        width: 100%;
-        height: 100dvh;
-        min-height: 100dvh;
-        overflow: hidden !important;
-        display: block;
-    }
-
-    /* Cabeçalho um pouco mais baixo e com espaço para a marca respirar. */
-    .brand-panel {
-        height: 190px;
-        min-height: 190px;
-    }
-
-    .brand-panel-content {
-        height: 190px;
-        min-height: 190px;
-        padding: 42px 16px 0;
-        overflow: hidden;
-    }
-
-    /* A marca fica mais à esquerda e ligeiramente mais baixa,
-       afastando-a do check e dos elementos geométricos do fundo. */
-    .brand-top {
-        width: max-content;
-        max-width: calc(100% - 24px);
-        margin-left: 2px;
-        transform: translateY(7px);
-        gap: 6px;
-        z-index: 8;
-    }
-
-    .brand-symbol-image {
-        width: 45px;
-        height: 51px;
-    }
-
-    .brand-name {
-        font-size: 29px;
-        letter-spacing: -1.7px;
-    }
-
-    .brand-divider {
-        height: 36px;
-        margin: 0 3px;
-    }
-
-    .brand-subtitle {
-        font-size: 10px;
-        line-height: 1.25;
-    }
-
-    /* Efeitos permanecem no fundo, concentrados no lado direito. */
-    .brand-visual {
-        z-index: 2 !important;
-        opacity: .64;
-    }
-
-    .brand-visual .large-check {
-        right: -112px;
-        top: 25px;
-        width: 205px;
-        height: 205px;
-    }
-
-    .brand-visual .large-check-circle {
-        width: 190px;
-        height: 190px;
-        border-width: 20px;
-    }
-
-    .brand-visual .large-check-mark {
-        left: 28px;
-        top: 68px;
-        width: 103px;
-        height: 59px;
-        border-left-width: 20px;
-        border-bottom-width: 20px;
-    }
-
-    .brand-visual .shape-1 { right: 19%; top: 24px; }
-    .brand-visual .shape-2 { right: -7%; top: -22px; }
-    .brand-visual .shape-3 { right: 29%; top: 92px; }
-    .brand-visual .shape-4 { right: 12%; top: 115px; }
-    .brand-visual .shape-5 { right: 1%; top: 103px; }
-
-    /* O card ocupa o espaço restante da tela sem criar página rolável. */
-    .login-side {
-        height: calc(100dvh - 190px);
-        min-height: 0;
-        padding: 12px 12px 16px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .login-card {
-        width: 100%;
-        max-width: none;
-        max-height: calc(100% - 8px);
-        margin: 0 auto;
-        padding: 20px 18px 16px;
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .login-header {
-        gap: 13px;
-        padding-bottom: 14px;
-        margin-bottom: 18px;
-    }
-
-    .welcome-icon {
-        width: 57px;
-        height: 57px;
-    }
-
-    .welcome-icon svg {
-        width: 29px;
-        height: 29px;
-    }
-
-    .login-header h1 {
-        font-size: 20px;
-        margin-bottom: 4px;
-    }
-
-    .login-header p {
-        font-size: 12px;
-    }
-
-    .input-group {
-        margin-bottom: 15px;
-    }
-
-    .input-group label {
-        margin-bottom: 7px;
-        font-size: 15px;
-    }
-
-    .input-wrapper {
-        height: 59px;
-        border-radius: 10px;
-    }
-
-    .input-wrapper input {
-        font-size: 14px;
-        padding-left: 53px;
-        padding-right: 48px;
-    }
-
-    .input-icon {
-        left: 13px;
-    }
-
-    .input-icon svg {
-        width: 22px;
-        height: 22px;
-    }
-
-    .toggle-password {
-        right: 12px;
-        width: 34px;
-        height: 34px;
-    }
-
-    .toggle-password svg {
-        width: 24px;
-        height: 24px;
-    }
-
-    .form-actions {
-        margin: 0 0 17px;
-        gap: 5px;
-        font-size: 12px;
-    }
-
-    .remember-me {
-        gap: 7px;
-    }
-
-    .remember-me input {
-        width: 20px;
-        height: 20px;
-    }
-
-    .forgot-password {
-        font-size: 12px;
-    }
-
-    .btn-primary {
-        min-height: 57px;
-        border-radius: 10px;
-        font-size: 16px;
-    }
-
-    .button-arrow {
-        right: 16px;
-        width: 25px;
-        height: 25px;
-    }
-
-    .login-footer {
-        gap: 10px;
-        margin-top: 14px;
-        padding-top: 14px;
-    }
-
-    .footer-shield {
-        width: 47px;
-        height: 47px;
-    }
-
-    .footer-shield svg {
-        width: 25px;
-        height: 25px;
-    }
-
-    .login-footer p {
-        margin-bottom: 3px;
-        font-size: 12px;
-    }
-
-    .login-footer a {
-        font-size: 14px;
-    }
-}
-
-/* =========================================================
-   ANDROID — FUNDO DECORATIVO DA ÁREA BRANCA
-   Pontilhado contínuo + quadrados translúcidos nos cantos.
-   ========================================================= */
-@media (max-width: 520px) {
-    .login-side {
-        background-color: #f5f8fc;
-        background-image:
-            radial-gradient(circle, rgba(45, 121, 233, .46) 1px, transparent 1.25px),
-            radial-gradient(circle at 78% 16%, rgba(205, 226, 250, .70), transparent 34%),
-            radial-gradient(circle at 12% 88%, rgba(219, 235, 252, .62), transparent 30%);
-        background-size: 18px 18px, 100% 100%, 100% 100%;
-        background-position: 0 0, 0 0, 0 0;
-        background-repeat: repeat, no-repeat, no-repeat;
-    }
-
-    /* Os elementos geométricos voltam a aparecer atrás do totem. */
-    .login-decoration {
-        display: block;
-        position: absolute;
-        top: -190px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 0;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .login-decoration span {
-        position: absolute;
-        display: block;
-        border-radius: 9px;
-        pointer-events: none;
-        backdrop-filter: blur(1px);
-    }
-
-    /* Grupo superior direito — sobe até a faixa branca logo abaixo da diagonal. */
-    .login-decoration span:nth-child(1) {
-        top: 215px;
-        right: -2%;
-        width: 94px;
-        height: 118px;
-        background: rgba(128, 202, 204, .18);
-    }
-
-    .login-decoration span:nth-child(2) {
-        top: 176px;
-        right: 17%;
-        width: 64px;
-        height: 64px;
-        background: rgba(83, 144, 234, .25);
-    }
-
-    .login-decoration span:nth-child(3) {
-        top: 242px;
-        right: 28%;
-        width: 25px;
-        height: 25px;
-        background: rgba(92, 193, 194, .27);
-    }
-
-    /* Grupo inferior esquerdo */
-    .login-decoration span:nth-child(4) {
-        bottom: -8%;
-        left: -8%;
-        width: 158px;
-        height: 158px;
-        background: rgba(97, 160, 237, .16);
-    }
-
-    .login-decoration span:nth-child(5) {
-        bottom: 8%;
-        left: -2%;
-        width: 74px;
-        height: 74px;
-        background: rgba(80, 143, 236, .22);
-    }
-
-    .login-decoration span:nth-child(6) {
-        bottom: 4%;
-        left: 13%;
-        width: 100px;
-        height: 100px;
-        border: 1px solid rgba(88, 157, 232, .23);
-        background: rgba(255, 255, 255, .09);
-    }
-
-    .login-decoration span:nth-child(7) {
-        bottom: 1%;
-        left: 8%;
-        width: 48px;
-        height: 48px;
-        background: rgba(96, 154, 237, .21);
-    }
-
-    .login-decoration span:nth-child(8) {
-        bottom: 7%;
-        left: 27%;
-        width: 20px;
-        height: 20px;
-        background: rgba(79, 191, 185, .28);
-    }
-
-    .login-decoration span:nth-child(9) {
-        bottom: 2%;
-        left: 42%;
-        width: 29px;
-        height: 29px;
-        background: rgba(80, 143, 236, .25);
-    }
-
-    .login-decoration span:nth-child(10) {
-        bottom: 12%;
-        left: 48%;
-        width: 13px;
-        height: 13px;
-        background: rgba(79, 191, 185, .32);
-    }
-
-    .login-decoration span:nth-child(11) {
-        bottom: 18%;
-        left: 17%;
-        width: 22px;
-        height: 22px;
-        background: rgba(80, 143, 236, .23);
-    }
-
-    .login-decoration span:nth-child(12) {
-        bottom: 14%;
-        left: 34%;
-        width: 17px;
-        height: 17px;
-        background: rgba(79, 191, 185, .23);
-    }
-
-    .login-card {
-        z-index: 2;
-    }
+    .forgot-password { font-size: inherit; }
 }
